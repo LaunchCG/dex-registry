@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This is a **dex package registry** hosted on Azure Blob Storage. It contains 18 packages for AI-augmented SDLC workflows, code quality tooling, and framework support.
+This is a **dex package registry** hosted on Azure Blob Storage. It contains 19 packages for AI-augmented SDLC workflows, code quality tooling, and framework support.
 
 ## Key Commands
 
@@ -98,7 +98,7 @@ base-dev (foundation)
 ├── code-review
 ├── nexus-dev
 │   ├── sdlc-code
-│   ├── sdlc-stories (+ jira-tools)
+│   ├── sdlc-stories
 │   ├── sdlc-prd
 │   ├── sdlc-architecture
 │   └── sdlc-reviewer (+ code-review)
@@ -113,5 +113,6 @@ typescript (standalone)
 python-dev (standalone)
 tailwind-css (standalone)
 docker-compose (standalone)
-jira-tools (standalone)
+jira (standalone)
+azure-devops (standalone)
 ```

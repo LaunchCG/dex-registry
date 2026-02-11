@@ -1,10 +1,9 @@
 ---
 name: dod-validation
 description: Validates work meets Definition of Done before merge to ensure quality and completeness
-allowed-tools: mcp__github__*, mcp__atlassian__*
+allowed-tools: mcp__github__*
 mcpServers:
   - github
-  - atlassian
 ---
 
 # Definition of Done Validation Skill
@@ -59,7 +58,7 @@ Work is **complete** and ready for merge when ALL criteria are met:
 - [ ] Demo-ready for stakeholders
 
 ### 6. Version Control ✅
-- [ ] Commits have Jira ticket keys
+- [ ] Commits have story/ticket keys
 - [ ] Commit messages are descriptive
 - [ ] Branch follows naming convention
 - [ ] No merge conflicts
@@ -73,9 +72,9 @@ Work is **complete** and ready for merge when ALL criteria are met:
 pr = github_get_pull_request(owner, repo, pr_number)
 files_changed = github_get_pull_request_files(owner, repo, pr_number)
 
-# Get associated Jira story
-story_key = extract_jira_key_from_pr(pr)
-story = atlassian_jira_get_issue(story_key) if story_key else None
+# Get associated story
+story_key = extract_story_key_from_pr(pr)
+story = get_story(story_key) if story_key else None
 ```
 
 **Step 2: Validate DoD Criteria**
@@ -190,7 +189,7 @@ dod_result = validator.overall_assessment([
 3. **HIGH:** Add unit tests (target >80% coverage)
 4. **HIGH:** Break down 87-line function into smaller pieces
 5. **MEDIUM:** Update user documentation
-6. **MEDIUM:** Fix commit messages and add Jira keys
+6. **MEDIUM:** Fix commit messages and add story keys
 
 ### 🔄 NEEDS REVIEW Example
 
@@ -299,7 +298,7 @@ Use this in PR descriptions:
 - [ ] Demo ready
 
 ### Version Control
-- [ ] Commits have Jira keys
+- [ ] Commits have story keys
 - [ ] Descriptive commit messages
 - [ ] Clean git history
 - [ ] No merge conflicts
@@ -310,7 +309,7 @@ Use this in PR descriptions:
 ## Error Handling
 
 - **PR Not Found:** Verify repository and PR number
-- **Jira Integration:** May not have associated story (note in assessment)
+- **Tracker Integration:** May not have associated story (note in assessment)
 - **Test Failures:** Cannot merge until all tests pass
 - **Security Issues:** Automatic block until resolved
 - **Missing Documentation:** May allow merge with follow-up ticket

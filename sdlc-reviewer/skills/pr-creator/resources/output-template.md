@@ -40,6 +40,6 @@ Generated with [Claude Code](https://claude.ai/code)
 
 ---
 
-### Jira Updated
+### Tracker Updated
 - Status: {{STORY_KEY}} -> {{NEW_STATUS}}
 - PR linked to story

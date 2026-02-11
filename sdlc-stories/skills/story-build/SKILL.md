@@ -8,7 +8,7 @@ allowed-tools: Bash
 
 Generates well-structured, AI-ready user stories with comprehensive acceptance criteria following Definition of Ready standards.
 
-**Data Source:** This skill receives story data from the invoking agent. The agent is responsible for fetching Jira data (if needed) and providing it to this skill.
+**Data Source:** This skill receives story data from the invoking agent. The agent is responsible for providing story data to this skill.
 
 ## When This Skill is Invoked
 
@@ -28,8 +28,8 @@ Creates or refines user stories that are:
 
 The agent provides story data in one of two formats:
 
-**If Existing Story (from Jira):**
-- Agent has already fetched story data using jira-cli-service
+**If Existing Story:**
+- Agent has provided existing story data
 - Parse the provided story JSON
 - Extract current content (summary, description, acceptance criteria)
 - Identify what needs refinement

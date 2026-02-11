@@ -3,7 +3,7 @@
 ## Variables
 
 - `{{STORY_TITLE}}` - Descriptive title for the story
-- `{{STORY_ID}}` - Jira key (e.g., PROJ-123) or TBD
+- `{{STORY_ID}}` - Story key (e.g., PROJ-123) or TBD
 - `{{STORY_TYPE}}` - Feature | Bug | Technical | Spike
 - `{{STORY_STATUS}}` - Ready for Development | Draft
 - `{{PERSONA}}` - Specific user persona (not "user")

@@ -152,7 +152,7 @@ This skill is invoked by the `product-requirement` agent in BUILD mode:
 - **Input:** Natural language feature description
 - **Processing:** Apply product-requirement-build.md template
 - **Output:** Complete PRD with Critical Questions section
-- **Next:** User reviews PRD, answers critical questions, creates Epic in Jira
+- **Next:** User reviews PRD, answers critical questions, adds to tracker
 
 ## Coaching Principles
 

@@ -1,15 +1,11 @@
 package {
   name        = "sdlc-stories"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "User story generation, validation, and DoR compliance testing with support for user, bug, and technical story types"
   platforms   = ["claude-code", "github-copilot"]
 }
 
 dependency "nexus-dev" {
-  version = ">=0.1.0"
-}
-
-dependency "jira-tools" {
   version = ">=0.1.0"
 }
 

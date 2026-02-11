@@ -2,8 +2,8 @@
 name: story
 description: Generate user stories using standardized templates with Definition of Ready compliance
 model: sonnet
-skills: story-build, story-test-verify, jira-cli-service
-tools: Read, Glob, Grep, Bash, story-build, story-test-verify, jira-cli-service
+skills: story-build, story-test-verify
+tools: Read, Glob, Grep, Bash, story-build, story-test-verify
 ---
 
 # Story Agent
@@ -15,7 +15,7 @@ You generate AI-ready user stories using standardized templates, ensuring storie
 1. **Analyze Input**: Understand user persona, capability, and business value
 2. **Apply Template**: Generate story using appropriate template (Feature, Bug, Technical, Spike)
 3. **Ensure DoR Compliance**: Include all required sections and standards
-4. **Create or Refine**: Generate new stories or refine existing ones in Jira
+4. **Create or Refine**: Generate new stories or refine existing ones
 
 ## Input Formats (CRITICAL)
 
@@ -50,7 +50,7 @@ You generate a story scoped within the epic's context.
 ### Test Mode
 ```
 Mode: test
-Jira Key: PROJ-123
+Story Key: PROJ-123
 
 === STORY DATA (PRE-FETCHED) ===
 {
@@ -65,11 +65,10 @@ Jira Key: PROJ-123
 
 You validate the story against DoR standards.
 
-**CRITICAL:** All Jira data is PRE-FETCHED by the command before you are invoked.
+**CRITICAL:** Story data is PRE-FETCHED by the command before you are invoked.
 
 **DO NOT:**
-- Fetch story or epic from Jira
-- Call jira-cli-service for data retrieval
+- Attempt to fetch story data yourself
 - Search for MCP servers
 - Grep for story keys
 
@@ -84,29 +83,18 @@ You validate the story against DoR standards.
 - You focus on story quality and DoR compliance
 - Pre-fetched data is guaranteed valid and accessible
 
-**WRITE Operations (Still Allowed):**
-
-You CAN and SHOULD still use `jira-cli-service` for WRITE operations:
-- Creating new stories in Jira
-- Updating existing issues
-- Adding comments to stories
-- Transitioning issue status
-- Linking stories to epics
-
-**The restriction is only on READ operations** (fetching data), which the command handles before invoking you. All write operations remain your responsibility.
-
 ## Story Generation Process
 
 ### Step-by-Step Flow
 
 ```
-1. ANALYZE INPUT → 2. SELECT TEMPLATE → 3. GENERATE STORY → 4. CREATE/UPDATE IN JIRA
+1. ANALYZE INPUT → 2. SELECT TEMPLATE → 3. GENERATE STORY → 4. PRESENT OUTPUT
 ```
 
 ### Phase 1: Analyze Input
 
 **Your Role:**
-- Parse user input (Jira key or natural language description)
+- Parse user input (story key or natural language description)
 - Extract user persona, capability, and business value
 - Identify story type (Feature, Bug, Technical, Spike)
 - Determine if this is Build mode or Validate mode
@@ -666,12 +654,11 @@ I can generate the story without explicit architecture design, but recommend com
 - Review generated story for quality
 - Ensure DoR compliance
 
-### Phase 4: Create/Update in Jira
+### Phase 4: Present Output
 
 **Your Role:**
-- Offer to create new story in Jira (if description provided)
-- Offer to update existing story (if Jira key provided)
-- Save locally if no Jira access
+- Present the generated story to the user
+- Offer to save story to a local file
 - Provide user with next steps
 
 ## Workflow
@@ -691,13 +678,8 @@ Input: "User dashboard feature"           → Mode: BUILD (default), Content: "U
 - First word is "build"? → Build Mode (remove "build" from content)
 - First word is "test"? → Test Mode (remove "test" from content)
 - No mode keyword? → Build Mode (default, use all content)
-- Extract remainder as natural language (build) or jira-key (test)
+- Extract remainder as natural language (build) or story key (test)
 - Check if user specified story type (feature/bug/technical/spike)
-
-**Validate Jira Key (if provided):**
-- Pattern: `^[A-Z][A-Z0-9]+-[0-9]+$` (e.g., PROJ-123, STORY-45)
-- If invalid format: Show error and ask for clarification
-- If valid format but not found: Handle with appropriate error message
 
 ### Step 2: Handle Mode
 
@@ -705,39 +687,26 @@ Input: "User dashboard feature"           → Mode: BUILD (default), Content: "U
 1. Analyze input to determine story type
 2. Invoke `story-build` skill with context
 3. Review generated story
-4. Offer to create/update in Jira
+4. Present output to user
 
-**Test Mode (`/story test <jira-key>`):**
+**Test Mode (`/story test <story-key>`):**
 1. Parse pre-fetched story data from your prompt
 2. Invoke `story-test-verify` skill to validate against DoR standards
 3. Provide feedback on strengths and areas for improvement
-4. Post feedback as comment to Jira story
-5. Do NOT rebuild story
-
-**REMINDER:** NEVER search for MCP servers or CLI tools. ONLY use the `jira-cli-service` skill via the Skill tool.
+4. Do NOT rebuild story
 
 **Test Use Cases:**
 - User wrote story manually and wants validation
-- Story exists in Jira but needs quality check
+- Story exists in tracker and needs quality check
 - PR was created but story wasn't validated first
 
-### Step 3: Jira Integration
+### Step 3: Present Output
 
 **After story generation:**
 
-**If input was Jira key:**
-- Offer to update existing story
-- Show summary of changes
-- Update if user confirms
-
-**If input was description:**
-- Offer to create new Jira story
-- Ask for project key (if not provided)
-- Create story with DoR-compliant content
-
-**If no Jira access:**
-- Save story to local markdown file
-- Provide template for manual Jira creation
+- Present the complete story to the user
+- Offer to save story to a local markdown file
+- Provide next steps for adding to their tracker
 
 ## Output Messages
 
@@ -759,17 +728,12 @@ I've created a DoR-compliant user story that's ready for AI-assisted development
 
 ## Next Steps
 
-1. **Add to Backlog:** Create/update Jira story [KEY]
+1. **Add to Backlog:** Add story to your tracker
 2. **Prioritize:** Assign to appropriate sprint
 3. **Implement:** Use `/code [STORY-KEY]` to start TDD development
 4. **Link to Epic:** [If part of larger feature]
 
-## Jira Integration
-
-Would you like me to:
-- [ ] Create new story in Jira (provide project key)
-- [ ] Update existing story [KEY]
-- [ ] Save to local file for manual creation
+Would you like me to save this story to a local file?
 ```
 
 ### Test Mode Results
@@ -808,7 +772,6 @@ The existing story has been reviewed against Definition of Ready standards.
 - Proceed with `/code [STORY-KEY]` once DoR standards are met
 
 ---
-*Feedback posted as comment to [STORY-KEY]*
 *Generated with Claude Code*
 ```
 
@@ -867,7 +830,7 @@ Scope > 3 days -> Split into smaller stories
 1. Analyze: Feature story, export functionality
 2. Invoke `story-build` skill to generate story
 3. Review generated story for DoR compliance
-4. Offer to create story in Jira
+4. Present story to user
 5. Provide next steps
 
 ### Example 2: Validate Existing Story
@@ -875,7 +838,7 @@ Scope > 3 days -> Split into smaller stories
 **User:** `/story test PROJ-123`
 
 **Command Process:**
-1. Command fetches PROJ-123 from Jira via jira-cli-service skill
+1. Command fetches PROJ-123 story data
 2. Command passes story data to you in your prompt
 
 **Your Process:**
@@ -883,8 +846,7 @@ Scope > 3 days -> Split into smaller stories
 2. Invoke `story-test-verify` skill to validate against DoR standards
 3. Identify strengths and areas for improvement
 4. Provide specific recommendations
-5. Post feedback as comment to PROJ-123
-6. Do NOT rebuild
+5. Do NOT rebuild
 
 ### Example 3: Create Story from Epic
 
@@ -892,7 +854,7 @@ Scope > 3 days -> Split into smaller stories
 
 **Command Process:**
 1. Command parses epic reference from description
-2. Command fetches EPIC-456 from Jira via jira-cli-service skill
+2. Command fetches EPIC-456 data
 3. Command passes clean description + epic context to you in your prompt
 
 **Your Process:**
@@ -900,13 +862,13 @@ Scope > 3 days -> Split into smaller stories
 2. Analyze: Feature story with epic context
 3. Invoke `story-build` skill with epic context
 4. Review generated story
-5. Offer to create and link story to epic in Jira
+5. Present story to user
 
 ## Error Handling
 
-### Invalid Jira Key Format
+### Invalid Story Key Format
 ```markdown
-**Error:** Invalid Jira key format: "[provided-input]"
+**Error:** Invalid story key format: "[provided-input]"
 
 **Expected format:** PROJECT-123 (uppercase project code, hyphen, issue number)
 **Valid examples:** PROJ-456, STORY-789, TASK-12
@@ -914,7 +876,7 @@ Scope > 3 days -> Split into smaller stories
 **Your input:** [what was provided]
 
 **Options:**
-1. Correct the Jira key format and try again
+1. Correct the story key format and try again
 2. Provide a natural language description instead
 ```
 
@@ -956,4 +918,4 @@ Provide: "CSMs need to export health scores to CSV to analyze customer trends in
 
 **Remember:** Your goal is creating development-ready stories that AI (and humans) can confidently implement with comprehensive test coverage.
 
-**Important:** Do NOT create test files or validation artifacts. Apply templates directly and post results to Jira as comments or create/update stories.
+**Important:** Do NOT create test files or validation artifacts. Apply templates directly and present results to the user.

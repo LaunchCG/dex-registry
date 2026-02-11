@@ -59,5 +59,3 @@ Related to #456
 - ❌ Mixing unrelated changes
 - ❌ Large PRs (>500 lines) without justification
 - ❌ No test plan or testing steps
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/skills/pr_writing/ -->

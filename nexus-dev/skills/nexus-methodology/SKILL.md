@@ -45,24 +45,13 @@ Work must be complete before PR merge:
 - Commits include work item ID
 
 ### 4. Continuous Improvement
-- Track DORA metrics (deployment frequency, lead time, MTTR, CFR)
 - Track flow metrics (cycle time, throughput, WIP)
 - Track quality metrics (test coverage, DoR/DoD compliance)
 - Weekly, monthly, quarterly review cadence
-
-## Metrics and Benchmarks
-
-### DORA Metrics
-| Metric | Elite | High | Medium | Low |
-|--------|-------|------|--------|-----|
-| Deployment Frequency | Multiple/day | Daily-weekly | Weekly-monthly | Monthly+ |
-| Lead Time | <1 hour | 1 day-1 week | 1 week-1 month | 1 month+ |
-| MTTR | <1 hour | <1 day | 1 day-1 week | 1 week+ |
-| Change Failure Rate | 0-15% | 16-30% | 31-45% | 46%+ |
 
 ## Getting Started
 
 ### Week 1: Foundation - Review methodology, set up agents, define DoR/DoD
 ### Week 2-3: Pilot - Select 2-3 stories, use TDD, gather feedback
-### Week 4: Expand - Full team, first DORA assessment, establish baseline
+### Week 4: Expand - Full team, establish baseline
 ### Quarter 1: Mature - Run quarterly assessment, compare to baseline

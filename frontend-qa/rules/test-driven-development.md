@@ -57,5 +57,3 @@ test('user can login with valid credentials', async ({ page }) => {
 - CI must run tests before allowing merges
 - Tests must have meaningful assertions
 - Test coverage should increase with each PR
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/rules/test/test-driven-development.md -->

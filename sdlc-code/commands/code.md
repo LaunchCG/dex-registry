@@ -10,15 +10,15 @@ Implements user stories using Test-Driven Development with automatic retry cycle
 
 ```bash
 # Build mode (default) - Full TDD implementation
-/code [build] <jira-key>
+/code [build] <story-key>
 
 # Test mode - Validate existing implementation
-/code test <jira-key>
+/code test <story-key>
 ```
 
 ## Parameters
 
-- **jira-key** (required): Jira story key (e.g., PROJ-123)
+- **story-key** (required): Story key (e.g., PROJ-123)
 
 ## Execution Instructions
 
@@ -26,29 +26,23 @@ Implements user stories using Test-Driven Development with automatic retry cycle
 
 ### Step 1: Parse Arguments
 
-Extract the mode and jira-key from the command arguments:
+Extract the mode and story-key from the command arguments:
 - Mode: `build` (default) or `test`
-- Jira Key: The story identifier (e.g., PROJ-123)
+- Story Key: The story identifier (e.g., PROJ-123)
 
 **Examples:**
-- `/code build PROJ-123` -> mode="build", jira_key="PROJ-123"
-- `/code PROJ-123` -> mode="build" (default), jira_key="PROJ-123"
-- `/code test PROJ-123` -> mode="test", jira_key="PROJ-123"
+- `/code build PROJ-123` -> mode="build", story_key="PROJ-123"
+- `/code PROJ-123` -> mode="build" (default), story_key="PROJ-123"
+- `/code test PROJ-123` -> mode="test", story_key="PROJ-123"
 
-### Step 1.5: Fetch Story from Jira (NEW - REQUIRED)
+### Step 1.5: Fetch Story Data (REQUIRED)
 
 **CRITICAL: Before invoking the agent, fetch the story data**
 
-1. **Validate jira-key format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
-2. **Invoke the jira-cli-service skill:**
-   - Use the **Skill tool**
-   - Skill name: `"jira-cli-service"`
-   - Args: `"view <jira-key>"`
-3. **Store the story data** returned by the skill
-4. **If fetch fails:** Report error to user and DO NOT invoke agent
-
-**Example:**
-- Skill tool with skill="jira-cli-service" and args="view PROJ-123"
+1. **Validate story-key format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
+2. **Fetch story data** using available tracker integration (if installed)
+3. **Store the story data** returned
+4. **If no tracker available or fetch fails:** Ask user to provide story content directly
 
 ### Step 2: Invoke Agent with Pre-Fetched Data (REQUIRED)
 
@@ -60,15 +54,14 @@ Task tool with:
   description: "Implement story using TDD"
   prompt: """
 Mode: <mode>
-Jira Key: <jira-key>
+Story Key: <story-key>
 
 === STORY DATA (PRE-FETCHED) ===
 <paste full story JSON or formatted data from Step 1.5>
 === END STORY DATA ===
 
-IMPORTANT: The story data above is already fetched from Jira.
+IMPORTANT: The story data above is already fetched.
 DO NOT attempt to fetch it again.
-DO NOT call jira-cli-service for this story.
 
 Execute the TDD workflow using the provided story data.
 """
@@ -111,8 +104,8 @@ Implements user stories using Test-Driven Development:
 - **Test mode**: Validate existing implementation only
 
 **Workflow:**
-1. Parse command arguments (mode + jira-key)
-2. Fetch story from Jira via jira-cli-service skill
+1. Parse command arguments (mode + story-key)
+2. Fetch story data via available tracker integration
 3. Pass story data to code agent
 4. Agent generates failing tests (RED)
 5. Agent implements code (GREEN)

@@ -1,9 +1,7 @@
 ---
 name: dor-validation
 description: Validates work items meet Definition of Ready criteria before sprint planning or development begins
-allowed-tools: mcp__azure-devops__*
-mcpServers:
-  - azure-devops
+allowed-tools: []
 ---
 
 # Definition of Ready Validation Skill
@@ -62,13 +60,13 @@ A story is **ready for development** when it meets ALL of these criteria:
 
 ## How to Use This Skill
 
-**Step 1: Fetch Story from Jira**
+**Step 1: Fetch Story from Tracker**
 ```python
 # Get story details
-story = atlassian_jira_get_issue(
+story = get_story(
     issue_key="PROJ-123",
     expand=["links", "subtasks"],
-    fields=["summary", "description", "acceptance_criteria", "customfield_10016", "labels", "components"]
+    fields=["summary", "description", "acceptance_criteria", "labels", "components"]
 )
 ```
 
@@ -272,7 +270,7 @@ Use this checklist during refinement:
 
 ## Error Handling
 
-- **Story Not Found:** Verify Jira key and permissions
+- **Story Not Found:** Verify story key and permissions
 - **Missing Fields:** Note which custom fields are unavailable
 - **Incomplete Data:** Identify specific gaps requiring refinement
 - **Dependency Issues:** Flag external blockers needing escalation

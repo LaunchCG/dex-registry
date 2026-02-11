@@ -15,7 +15,7 @@ This skill is automatically invoked by the `code` agent at the start of the TDD 
 ## Purpose
 
 Creates test suite that:
-1. Covers all acceptance criteria from Jira story
+1. Covers all acceptance criteria from story
 2. Includes unit, integration, and e2e tests
 3. Follows project's test framework conventions
 4. Fails initially (RED phase of TDD)
@@ -23,7 +23,7 @@ Creates test suite that:
 
 ## Test Generation Process
 
-### Step 1: Fetch Story from Jira
+### Step 1: Parse Story Data
 
 - Use MCP Atlassian tool to fetch story by key
 - Extract acceptance criteria
@@ -363,13 +363,13 @@ This skill is the first step in the code TDD cycle:
 
 ## Error Handling
 
-### Story Not Found in Jira
+### Story Not Found
 ```markdown
-**Error:** Unable to fetch story [STORY-KEY] from Jira
+**Error:** Unable to fetch story [STORY-KEY] from tracker
 
 **Possible Causes:**
 - Invalid story key
-- No Jira access permissions
+- No tracker access permissions
 - Network connectivity issue
 
 **Action:** Verify story key and ensure Atlassian MCP OAuth is properly configured

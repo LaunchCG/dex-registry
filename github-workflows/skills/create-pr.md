@@ -61,5 +61,3 @@ Before creating a PR, ensure:
 - Request specific reviewers
 - Add labels for categorization
 - Link to design docs or RFCs for large changes
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/commands/create_pr.md -->

@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-architecture"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "Architecture documentation generation with repository scanning, convention detection, and ADR creation"
   platforms   = ["claude-code", "github-copilot"]
 }

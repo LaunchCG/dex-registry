@@ -1,6 +1,6 @@
 package {
   name        = "base-dev"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "Base development toolkit with commit standards, linting rules, CI/CD automation, serena and context7 MCP servers"
   platforms   = ["claude-code", "github-copilot"]
 }

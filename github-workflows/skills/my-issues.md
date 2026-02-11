@@ -84,5 +84,3 @@ gh pr list --search "author:@me"
 - Comment on blockers or questions
 - Close issues when PRs are merged
 - Unassign if you can't work on an issue
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/commands/my_issues.md -->

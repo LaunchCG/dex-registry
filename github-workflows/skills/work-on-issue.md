@@ -88,7 +88,6 @@ Based on issue analysis, identify and enable relevant skills:
 - MongoDB → `mongodb`
 
 **Quality Skills:**
-- Pre-PR review → `code-review`
 - PR creation → `create-pr`
 
 Explicitly state which skills will be used:
@@ -130,7 +129,7 @@ Follow the plan created in Phase 2:
 5. Run tests frequently during development
 6. Fix any test failures immediately
 7. Run linting during development and fix issues as they arise
-8. Self-review using code-review skill throughout implementation
+8. Self-review code throughout implementation
 
 **Commit Message Pattern:**
 ```bash
@@ -170,7 +169,7 @@ npm run type-check  # or tsc --noEmit, mypy, pyright
 ```
 
 **4. Self-Review Code Changes:**
-- Use `code-review` skill for systematic review
+- Perform systematic self-review
 - Check for security vulnerabilities
 - Verify error handling
 - Confirm no debugging code left behind
@@ -207,4 +206,3 @@ This skill works with:
 - Language skills - Python, TypeScript, etc.
 - Framework skills - Next.js, Tailwind, etc.
 - Testing skills - Playwright, pytest, etc.
-- `code-review` - Self-review before PR submission

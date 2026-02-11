@@ -1,6 +1,6 @@
 package {
   name        = "mongodb"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "MongoDB and Mongoose ODM expertise for Node.js"
   platforms   = ["claude-code", "github-copilot"]
 }

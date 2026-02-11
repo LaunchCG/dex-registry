@@ -79,10 +79,3 @@ The frontend-qa agent specializes in:
 - Frontend QA agent
 - Test command
 
-## Note
-
-This package contains placeholder content. Full content should be populated from:
-- `/Users/jim/Projects/draftbox/.claude/skills/playwright-testing/`
-- `/Users/jim/Projects/draftbox/.claude/agents/qa.md`
-- `/Users/jim/Projects/draftbox/.claude/commands/test.md`
-- `/Users/jim/Projects/draftbox/.claude/rules/test/test-driven-development.md`

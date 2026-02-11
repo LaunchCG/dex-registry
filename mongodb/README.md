@@ -84,10 +84,3 @@ await session.withTransaction(async () => {
 - CRUD operation patterns
 - Transaction handling
 
-## Note
-
-This package contains placeholder content. Full content should be populated from:
-- `/Users/jim/Projects/draftbox/.claude/skills/mongodb/SKILL.md`
-- `/Users/jim/Projects/draftbox/.claude/skills/mongodb/resources/schema-validation.md`
-- `/Users/jim/Projects/draftbox/.claude/skills/mongodb/resources/crud-queries.md`
-- `/Users/jim/Projects/draftbox/.claude/skills/mongodb/resources/transactions-performance.md`

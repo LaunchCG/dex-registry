@@ -57,5 +57,3 @@ gh repo clone owner/repo
 - Enable status checks (tests, linting)
 - Use CODEOWNERS for automatic review requests
 - Keep main/master branch clean and stable
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/skills/github_operations/ -->

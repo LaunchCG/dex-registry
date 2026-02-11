@@ -13,13 +13,13 @@ Generates DoR-compliant user stories from descriptions or validates existing sto
 /story [build] <description>
 
 # Test mode - Validate existing story
-/story test <jira-key>
+/story test <story-key>
 ```
 
 ## Parameters
 
 - **description**: Natural language feature description (build mode)
-- **jira-key**: Jira story key to validate (test mode, e.g., PROJ-123)
+- **story-key**: Story key to validate (test mode, e.g., PROJ-123)
 
 ## Execution Instructions
 
@@ -29,7 +29,7 @@ Generates DoR-compliant user stories from descriptions or validates existing sto
 
 Extract the mode and content from command arguments:
 - Mode: `build` (default) or `test`
-- Content: Description (build mode) or jira-key (test mode)
+- Content: Description (build mode) or story-key (test mode)
 
 **Examples:**
 - `/story build User authentication` -> mode="build", content="User authentication"
@@ -57,34 +57,22 @@ Extract the mode and content from command arguments:
 
 ### Step 1.5B: Fetch Epic Data (Build Mode with Epic)
 
-**CRITICAL: If epic was referenced in build mode, fetch it before invoking agent**
+**If epic was referenced in build mode, fetch it before invoking agent**
 
 1. **Validate epic-key format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
-2. **Invoke the jira-cli-service skill:**
-   - Use the **Skill tool**
-   - Skill name: `"jira-cli-service"`
-   - Args: `"view <epic-key>"`
-3. **Store the epic data** returned by the skill
-4. **If fetch fails:** Report error to user and DO NOT invoke agent
-
-**Example:**
-- Skill tool with skill="jira-cli-service" and args="view EPIC-456"
+2. **Fetch epic data** using available tracker integration (if installed)
+3. **Store the epic data** returned
+4. **If no tracker available or fetch fails:** Ask user to provide epic context directly
 
 ### Step 1.5C: Fetch Story Data (Test Mode)
 
-**CRITICAL: If test mode, fetch the story before invoking agent**
+**If test mode, fetch the story before invoking agent**
 
-1. **Extract jira-key** from content
-2. **Validate jira-key format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
-3. **Invoke the jira-cli-service skill:**
-   - Use the **Skill tool**
-   - Skill name: `"jira-cli-service"`
-   - Args: `"view <jira-key>"`
-4. **Store the story data** returned by the skill
-5. **If fetch fails:** Report error to user and DO NOT invoke agent
-
-**Example:**
-- Skill tool with skill="jira-cli-service" and args="view PROJ-123"
+1. **Extract story-key** from content
+2. **Validate story-key format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
+3. **Fetch story data** using available tracker integration (if installed)
+4. **Store the story data** returned
+5. **If no tracker available or fetch fails:** Ask user to provide story content directly
 
 ### Step 2: Invoke Agent with Pre-Fetched Data (REQUIRED)
 
@@ -117,7 +105,7 @@ Epic Key: <epic-key>
 <paste epic JSON or formatted data from Step 1.5B>
 === END EPIC CONTEXT ===
 
-IMPORTANT: Epic context is already fetched. DO NOT call jira-cli-service.
+IMPORTANT: Epic context is already fetched. DO NOT fetch it again.
 Generate story within this epic's context.
 """
 ```
@@ -129,13 +117,13 @@ Task tool with:
   description: "Validate user story"
   prompt: """
 Mode: test
-Jira Key: <jira-key>
+Story Key: <story-key>
 
 === STORY DATA (PRE-FETCHED) ===
 <paste story JSON or formatted data from Step 1.5C>
 === END STORY DATA ===
 
-IMPORTANT: Story data is already fetched. DO NOT call jira-cli-service.
+IMPORTANT: Story data is already fetched. DO NOT fetch it again.
 Validate this story against DoR standards.
 """
 ```
@@ -145,7 +133,7 @@ Validate this story against DoR standards.
 - **DO NOT** invoke skills directly (e.g., `story-test-create`, `story-build`, `story-test-verify`)
 - **DO NOT** generate the story yourself
 - **DO NOT** call MCP tools directly
-- **DO NOT** create Jira issues yourself
+- **DO NOT** create tracker issues yourself
 - **DO NOT** validate DoR criteria yourself
 - **DO NOT** fetch story or epic again (already provided to agent)
 
@@ -153,7 +141,7 @@ Validate this story against DoR standards.
 
 The `ai-sdlc:story` agent will:
 1. Parse pre-fetched data from prompt (if applicable)
-2. **Build mode**: Generate story from description, create in Jira
+2. **Build mode**: Generate story from description
 3. **Test mode**: Validate against DoR using provided story data
 4. Retry up to 3 times if validation fails
 5. Return results with quality scores
@@ -168,7 +156,7 @@ Once the agent completes, present its results to the user without modification.
 
 Generates DoR-compliant user stories or validates existing ones:
 
-- **Build mode** (default): Generate story using templates, create in Jira
+- **Build mode** (default): Generate story using templates
   - Optional: Include epic context by adding `(from EPIC-XXX)` to description
 - **Test mode**: Validate existing story against DoR standards
 
@@ -178,21 +166,21 @@ Generates DoR-compliant user stories or validates existing ones:
 1. Parse description from arguments
 2. Pass to story agent
 3. Agent generates DoR-compliant story
-4. Agent creates story in Jira
+4. Agent presents story to user
 
 **Build Mode (With Epic):**
 1. Parse description and detect epic reference
-2. Fetch epic data via jira-cli-service skill
+2. Fetch epic data via available tracker integration
 3. Pass clean description + epic context to agent
 4. Agent generates story aligned with epic goals
-5. Agent creates and links story to epic in Jira
+5. Agent presents story to user
 
 **Test Mode:**
-1. Parse jira-key from arguments
-2. Fetch story data via jira-cli-service skill
+1. Parse story-key from arguments
+2. Fetch story data via available tracker integration
 3. Pass story data to agent
 4. Agent validates against DoR standards
-5. Agent posts feedback to Jira
+5. Agent presents feedback to user
 
 **Story includes:**
 - User story format (As a... I want... So that...)

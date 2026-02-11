@@ -62,5 +62,3 @@ Step-by-step guide for creating clear, actionable issues.
 - Use labels to categorize (bug, enhancement, documentation)
 - Assign to appropriate team member if known
 - Link to related issues or PRs
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/commands/create_issue.md -->

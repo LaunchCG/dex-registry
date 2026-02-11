@@ -85,5 +85,3 @@
 4. **In Progress** - Work has started
 5. **In Review** - PR is under review
 6. **Closed** - Resolved or completed
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/rules/github/github-issues.md -->

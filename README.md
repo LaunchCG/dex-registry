@@ -12,13 +12,14 @@ A dex package registry hosted on Azure Blob Storage. Contains development packag
 | `base-dev` | Commit standards, linting, CI/CD, serena + context7 MCP | — |
 | `code-review` | Review standards, code-reviewer agent, software engineering patterns | base-dev |
 | `nexus-dev` | Nexus AI-SDLC methodology: DoR, DoD, TDD, security scanning | base-dev |
-| `jira-tools` | Shared Jira CLI integration using Atlassian CLI wrapper scripts | — |
+| `jira` | Jira CLI integration using Atlassian CLI wrapper scripts | — |
+| `azure-devops` | Azure DevOps integration using Azure DevOps MCP server | — |
 
 ### SDLC Workflow
 | Package | Description | Dependencies |
 |---------|-------------|--------------|
 | `sdlc-code` | TDD code development (RED-GREEN-REFACTOR) | nexus-dev |
-| `sdlc-stories` | User story generation and DoR validation | nexus-dev, jira-tools |
+| `sdlc-stories` | User story generation and DoR validation | nexus-dev |
 | `sdlc-prd` | Product requirement document generation | nexus-dev |
 | `sdlc-architecture` | Architecture documentation and ADR generation | nexus-dev |
 | `sdlc-reviewer` | PR review with DoD validation, security, and conventional commits | nexus-dev, code-review |
@@ -160,7 +161,8 @@ nexus-template/
 ├── base-dev/                   # Package directories...
 ├── code-review/
 ├── nexus-dev/
-├── jira-tools/
+├── jira/
+├── azure-devops/
 ├── sdlc-code/
 ├── sdlc-stories/
 ├── sdlc-prd/

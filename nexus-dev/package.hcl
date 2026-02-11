@@ -1,6 +1,6 @@
 package {
   name        = "nexus-dev"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "Core Nexus AI-SDLC methodology with Definition of Ready, Definition of Done, TDD workflow, documentation assessment, and security scanning"
   platforms   = ["claude-code", "github-copilot"]
 }

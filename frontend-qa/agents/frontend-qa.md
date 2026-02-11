@@ -64,5 +64,3 @@ Specialized agent for comprehensive E2E testing with Playwright.
 - No hard-coded waits (use auto-waiting)
 - Mock external API calls
 - Tests should be fast and reliable
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/agents/qa.md -->

@@ -8,7 +8,7 @@ allowed-tools: Bash
 
 Generates TDD-style validation tests for user stories to ensure they meet Definition of Ready (DoR) standards and are AI-ready for development.
 
-**Data Source:** This skill receives story data from the invoking agent. The agent is responsible for fetching Jira data (if needed) and providing it to this skill.
+**Data Source:** This skill receives story data from the invoking agent. The agent is responsible for providing story data to this skill.
 
 ## When This Skill is Invoked
 
@@ -66,29 +66,10 @@ Creates test criteria to validate:
 
 ### Step 1: Analyze Input
 
-**If input is Jira key:**
-- Fetch story from Jira using appropriate backend
+**If input is existing story:**
+- Parse the provided story content
 - Extract existing content
 - Identify gaps in current story
-
-**Jira Fetch - REST API Backend (Headless):**
-```bash
-# Check for REST API mode
-if [ -n "$JIRA_API_TOKEN" ] || [ -n "$JIRA_PASSWORD" ]; then
-  # Build authentication header
-  if [ -n "$JIRA_API_TOKEN" ]; then
-    AUTH=$(echo -n "${JIRA_EMAIL}:${JIRA_API_TOKEN}" | base64)
-  else
-    AUTH=$(echo -n "${JIRA_USERNAME}:${JIRA_PASSWORD}" | base64)
-  fi
-
-  # Fetch issue
-  curl -s -X GET \
-    "${JIRA_BASE_URL}/rest/api/3/issue/PROJ-123?fields=summary,description,customfield_10016,labels,status" \
-    -H "Authorization: Basic ${AUTH}" \
-    -H "Content-Type: application/json"
-fi
-```
 
 **If input is natural language description:**
 - Parse for user, capability, and benefit
@@ -229,7 +210,7 @@ This skill is the first step in the story TDD cycle:
 **Error:** Cannot create validation tests - input too vague
 
 **Required:** Either:
-- Jira story key (PROJ-123) with populated content
+- Existing story content (provided by agent or user)
 - Detailed feature description with user, capability, and benefit
 
 **Received:** [what was provided]
@@ -240,16 +221,16 @@ This skill is the first step in the story TDD cycle:
 - WHY they need it (business value)
 ```
 
-### Jira Story Not Found
+### Story Not Found
 ```markdown
-**Error:** Story [KEY] not found in Jira
+**Error:** Story [KEY] not found
 
 **Possible causes:**
 - Story key typo
 - No access permissions
 - Story exists in different project
 
-**Action:** Verify story key and Jira permissions
+**Action:** Verify story key and permissions
 ```
 
 ---

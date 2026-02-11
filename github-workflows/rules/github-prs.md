@@ -67,5 +67,3 @@ If a PR is too large, consider breaking it into smaller, focused PRs.
 ✅ Use draft PRs for early feedback
 ✅ Self-review before requesting reviews
 ✅ Thank reviewers for their time
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/rules/github/github-prs.md -->

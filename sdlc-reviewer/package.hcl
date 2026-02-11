@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-reviewer"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "PR review, creation, and git workflow with DoD validation, security scanning, and conventional commits"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -24,7 +24,7 @@ claude_skill "pr-creator" {
 }
 
 claude_skill "git-commit-helper" {
-  description = "Generates commit messages following conventional commit format with Jira ticket detection"
+  description = "Generates commit messages following conventional commit format with ticket detection"
   content     = file("skills/git-commit-helper/SKILL.md")
 }
 
@@ -44,7 +44,7 @@ copilot_skill "pr-creator" {
 }
 
 copilot_skill "git-commit-helper" {
-  description = "Generates commit messages following conventional commit format with Jira ticket detection"
+  description = "Generates commit messages following conventional commit format with ticket detection"
   content     = file("skills/git-commit-helper/SKILL.md")
 }
 

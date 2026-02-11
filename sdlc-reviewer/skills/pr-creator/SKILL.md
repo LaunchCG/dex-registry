@@ -8,7 +8,7 @@ autoInvoke:
 
 # PR Creator Skill
 
-Creates well-structured pull requests with comprehensive descriptions, linked Jira stories, and appropriate reviewer assignments.
+Creates well-structured pull requests with comprehensive descriptions, linked stories, and appropriate reviewer assignments.
 
 ## When This Skill Activates
 
@@ -23,7 +23,7 @@ This skill activates when:
 
 Collect necessary details:
 - Branch name and target branch
-- Related Jira story/issue
+- Related story/issue
 - Changes made (from git diff)
 - Test results
 
@@ -31,7 +31,7 @@ Collect necessary details:
 
 Create comprehensive description:
 - Summary of changes
-- Link to Jira story
+- Link to story
 - Testing performed
 - Screenshots (if UI changes)
 - Breaking changes noted
@@ -44,7 +44,7 @@ Use GitHub API to create PR:
 - Assign reviewers
 - Add labels
 
-### Step 4: Update Jira
+### Step 4: Update Tracker
 
 Link PR to story and update status.
 
@@ -103,7 +103,7 @@ Generated with [Claude Code](https://claude.ai/code)
 
 ---
 
-### Jira Updated
+### Tracker Updated
 - Status: PROJ-123 -> In Review
 - PR linked to story
 ```

@@ -84,5 +84,3 @@ Tests run automatically on:
 - Every commit
 - Pull requests
 - Before merges to main
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/commands/test.md -->

@@ -72,5 +72,3 @@ Mockups, examples from other tools, etc.
 - ❌ No context or environment information
 - ❌ Combining multiple unrelated issues
 - ❌ Feature requests without explaining the problem
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/skills/issue_writing/ -->

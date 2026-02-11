@@ -14,7 +14,7 @@ Wrapper scripts for Atlassian CLI (acli) operations with automatic authenticatio
 
 Claude will use this skill when:
 - **ANY Jira operation is needed** (search issues, create stories, add comments, etc.)
-- Other skills need Jira access (velocity-tracker, story-build, dora-metrics-calculator, etc.)
+- Other skills need Jira access
 - "use acli" or "atlassian cli" is explicitly mentioned
 - "fetch jira issues", "search jira", "create jira issue"
 - Reliable local execution without MCP dependency is required
@@ -329,16 +329,6 @@ Always report data quality metrics when using this skill:
 - **Completeness:** 100%
 - **Confidence:** HIGH
 ```
-
----
-
-## Integration with Other Skills
-
-This skill can be invoked by:
-- `story-build` - For creating/updating stories
-- `velocity-tracker` - For fetching sprint data
-- `jira-story-analyzer` - For analyzing story quality
-- `dora-metrics-calculator` - For deployment tracking
 
 ---
 

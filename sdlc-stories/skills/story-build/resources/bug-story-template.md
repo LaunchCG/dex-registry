@@ -3,7 +3,7 @@
 ## Variables
 
 - `{{BUG_TITLE}}` - Description of the bug
-- `{{STORY_ID}}` - Jira key (e.g., PROJ-123) or TBD
+- `{{STORY_ID}}` - Story key (e.g., PROJ-123) or TBD
 - `{{SEVERITY}}` - Critical | High | Medium | Low
 - `{{AFFECTED_USER}}` - User persona affected by the bug
 - `{{CORRECT_BEHAVIOR}}` - What should happen

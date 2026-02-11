@@ -2,8 +2,8 @@
 name: code
 description: Orchestrates TDD cycle for code implementation with max 3 test-fix cycles, following RED-GREEN-REFACTOR
 model: sonnet
-skills: code-test-create, code-build, code-test-verify, jira-cli-service, git-commit-helper
-tools: Read, Glob, Grep, Bash, code-test-create, code-build, code-test-verify, jira-cli-service, git-commit-helper
+skills: code-test-create, code-build, code-test-verify, git-commit-helper
+tools: Read, Glob, Grep, Bash, code-test-create, code-build, code-test-verify, git-commit-helper
 ---
 
 # Code Agent
@@ -43,7 +43,7 @@ You will receive story data in the following format:
 
 ```
 Mode: build (or test)
-Jira Key: PROJ-123
+Story Key: PROJ-123
 
 === STORY DATA (PRE-FETCHED) ===
 {
@@ -60,8 +60,7 @@ Jira Key: PROJ-123
 **CRITICAL:** The story data is PRE-FETCHED by the command before you are invoked.
 
 **DO NOT:**
-- Attempt to fetch the story from Jira
-- Call jira-cli-service to retrieve story data
+- Attempt to fetch story data yourself
 - Search for MCP servers
 - Grep for the story key in the codebase
 - Look for CLI installations
@@ -77,16 +76,6 @@ Jira Key: PROJ-123
 - Agents focus on business logic (your responsibility)
 - Pre-fetched data is guaranteed valid and accessible
 - No authentication or network issues during your execution
-
-**WRITE Operations (Still Allowed):**
-
-You CAN and SHOULD still use `jira-cli-service` for WRITE operations:
-- Updating story status in Jira
-- Adding comments to stories
-- Transitioning issue status (e.g., "In Progress", "Done")
-- Creating sub-tasks if needed
-
-**The restriction is only on READ operations** (fetching story data), which the command handles before invoking you. All write operations remain your responsibility.
 
 ## TDD Cycle for Code
 
@@ -106,10 +95,10 @@ You CAN and SHOULD still use `jira-cli-service` for WRITE operations:
 
 **Invoke:** `code-test-create` skill
 
-**Input:** Jira story key from user
+**Input:** story key from user
 
 **Process:**
-1. Fetch story from Jira using `jira-cli-service` skill (NEVER call MCP tools directly)
+1. Parse story data from provided input
 2. Extract acceptance criteria
 3. Generate test suite (unit, integration, e2e)
 4. Create tests that FAIL (RED phase)
@@ -286,10 +275,10 @@ Input: "PROJ-123"            -> Mode: BUILD (default), Story: "PROJ-123"
 - First word is "build"? -> Build Mode (remove "build" from content)
 - First word is "test"? -> Test Mode (remove "test" from content)
 - No mode keyword? -> Build Mode (default, use all content)
-- Extract Jira story key from remaining content (required)
+- Extract story key from remaining content (required)
 - Check if branch already exists
 
-**Validate Jira Key:**
+**Validate Story Key:**
 - Pattern: `^[A-Z][A-Z0-9]+-[0-9]+$` (e.g., PROJ-123, STORY-45)
 - If invalid format: Show error - story key is required for code implementation
 - If valid format but not found: Handle with appropriate error message
@@ -316,7 +305,7 @@ Input: "PROJ-123"            -> Mode: BUILD (default), Story: "PROJ-123"
 **Issues:**
 - [Missing AC / Wrong status / No technical approach / etc.]
 
-**Action:** Update the story in Jira and run `/code [STORY-KEY]` again
+**Action:** Update the story and run `/code [STORY-KEY]` again
 ```
 
 **REMINDER:** The story data is already in your context. DO NOT attempt to fetch it again.
@@ -469,67 +458,13 @@ LOOP while Attempt <= 3:
    - Include co-author trailer
    - Push changes to branch
 
-2. **Update Jira:**
-   - Update Jira story status to "In Progress" or appropriate status
+2. **Update Tracker:**
+   - Update story status to "In Progress" or appropriate status
    - Add comment documenting completion
 
-**Note:** PR creation is not automatic. User can create PR manually using `/pr-creator` skill or `gh pr create` when ready for review.
+**Note:** PR creation is not automatic. User can create PR manually using `gh pr create` when ready for review.
 
-### Step 7: Recommend Code Review (Post-GREEN)
-
-**After GREEN phase success (all tests pass), recommend code-review plugin:**
-
-**Check for code-review plugin:**
-```bash
-# Detection logic (via plugin-detector skill)
-claude plugins list 2>/dev/null | grep -q "code-review"
-```
-
-**If code-review plugin IS installed:**
-```markdown
-## Code Review Recommendation
-
-Your TDD implementation is complete! Consider running `/code-review` before creating your PR.
-
-**Multi-Agent Review Benefits:**
-- **Quality Confidence Score**: Get an objective quality assessment (0-100)
-- **Guideline Compliance**: Automated check against coding standards
-- **Best Practice Validation**: Catch issues before human review
-- **Architectural Alignment**: Verify implementation matches patterns
-
-**Run:**
-```bash
-/code-review
-```
-
-This typically catches 15-20% of issues that slip past TDD.
-```
-
-**If code-review plugin is NOT installed (show ONCE per session):**
-```markdown
-## Enhance Your Workflow
-
-For comprehensive code review with multi-agent analysis, consider installing the `code-review` plugin:
-
-```bash
-claude plugin add code-review
-```
-
-**Benefits after TDD completion:**
-- **Quality Confidence Score** (0-100) - Objective quality assessment
-- **Guideline Compliance Check** - Automated standards validation
-- **Best Practice Analysis** - Catch issues before PR review
-- **Architectural Review** - Verify implementation patterns
-
-This is a one-time recommendation. The plugin integrates seamlessly with your TDD workflow.
-```
-
-**Session Caching:**
-- Track recommendation shown in session context
-- Do NOT repeat "not installed" recommendation in same session
-- Use `plugin-detector` skill for detection and caching logic
-
-### Step 8: Security Check for Sensitive Files (Post-GREEN)
+### Step 7: Security Check for Sensitive Files (Post-GREEN)
 
 **After GREEN phase success, check if implementation touches security-sensitive files:**
 
@@ -667,7 +602,7 @@ This is a one-time recommendation.
 - Do NOT repeat "not installed" recommendation in same session
 - Use `plugin-detector` skill for detection and caching logic
 
-### Step 9: Recommend Code Simplifier (Post-REFACTOR)
+### Step 8: Recommend Code Simplifier (Post-REFACTOR)
 
 **After REFACTOR phase completion, recommend code-simplifier from pr-review-toolkit:**
 
@@ -767,28 +702,23 @@ AC 3: [Description]
 
 ## Next Steps
 
-1. **Run Code Review:** Consider `/code-review` for multi-agent quality analysis
-2. **Security Check:** If sensitive files modified, review security (see Step 8)
-3. **Code Simplification (optional):** Consider `/code-simplifier` for deeper refactoring (see Step 9)
-4. **Create PR:** Run `gh pr create` or use GitHub UI when ready for review
-5. **Run CI:** Verify all checks pass
-6. **Code Review:** Request review from team
-7. **Merge:** After approval
-8. **Deploy:** Follow deployment process
+1. **Security Check:** If sensitive files modified, review security (see Step 7)
+2. **Code Simplification (optional):** Consider `/code-simplifier` for deeper refactoring (see Step 8)
+3. **Create PR:** Run `gh pr create` or use GitHub UI when ready for review
+4. **Run CI:** Verify all checks pass
+5. **Code Review:** Request review from team
+6. **Merge:** After approval
+7. **Deploy:** Follow deployment process
 
-**Jira Status:** Updated to "In Progress"
-
-## Code Review Recommendation
-
-[See Step 7 for plugin-aware recommendation - included automatically based on detection]
+**Status:** Updated to "In Progress"
 
 ## Security Recommendation
 
-[See Step 8 for plugin-aware security recommendation - included automatically if sensitive files were modified]
+[See Step 7 for plugin-aware security recommendation - included automatically if sensitive files were modified]
 
 ## Code Simplification Recommendation
 
-[See Step 9 for optional code-simplifier suggestion - included only if pr-review-toolkit is installed]
+[See Step 8 for optional code-simplifier suggestion - included only if pr-review-toolkit is installed]
 ```
 
 ### Test-Only Results
@@ -877,7 +807,7 @@ Don't change behavior
 **User:** `/code PROJ-123`
 
 **Command Process:**
-1. Command fetches PROJ-123 from Jira via jira-cli-service skill
+1. Command fetches PROJ-123 story data
 2. Command passes story data to you in your prompt
 
 **Your Process:**
@@ -886,7 +816,7 @@ Don't change behavior
 3. Invoke `code-test-create` -> Generate failing tests (using `docs/conventions/testing-conventions.md`)
 4. Invoke `code-build` -> Implement to pass tests (using `docs/conventions/coding-standards.md`)
 5. Invoke `code-test-verify` -> Verify all pass
-6. If pass: Commit changes and update Jira
+6. If pass: Commit changes and update tracker
 7. If fail: Retry (max 3 times)
 
 ### Example 2: Add Tests to Existing Code
@@ -913,18 +843,18 @@ Don't change behavior
 
 ## Error Handling
 
-### Invalid Jira Key Format
+### Invalid Story Key Format
 ```markdown
-**Error:** Invalid Jira story key format: "[provided-input]"
+**Error:** Invalid story key format: "[provided-input]"
 
 **Expected format:** PROJECT-123 (uppercase project code, hyphen, issue number)
 **Valid examples:** PROJ-456, STORY-789, TASK-12
 
 **Your input:** [what was provided]
 
-**Requirement:** Code implementation requires a valid Jira story key to ensure requirements are documented and tracked.
+**Requirement:** Code implementation requires a valid story key to ensure requirements are documented and tracked.
 
-**Action:** Provide a valid Jira story key
+**Action:** Provide a valid story key
 ```
 
 ### Story Not Found
@@ -933,7 +863,7 @@ Don't change behavior
 
 **Possible causes:**
 - Invalid key
-- No Jira access
+- No tracker access
 - Story in different project
 
 **Action:** Verify key and permissions

@@ -3,7 +3,7 @@
 ## Variables
 
 - `{{TECH_TITLE}}` - Description of technical work
-- `{{STORY_ID}}` - Jira key (e.g., PROJ-123) or TBD
+- `{{STORY_ID}}` - Story key (e.g., PROJ-123) or TBD
 - `{{CATEGORY}}` - Refactoring | Infrastructure | Tech Debt | Spike
 - `{{STAKEHOLDER}}` - development team | system | operations team
 - `{{IMPROVEMENT}}` - Technical improvement needed

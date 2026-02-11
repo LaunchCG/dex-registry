@@ -105,10 +105,3 @@ session.endSession();
 ❌ Querying in loops (N+1 problem)
 ❌ Not filtering by user (security risk)
 ❌ Exposing Mongoose documents to client (use .lean())
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/skills/mongodb/SKILL.md -->
-<!-- 3 additional resource files available in draftbox:
-- resources/schema-validation.md
-- resources/crud-queries.md
-- resources/transactions-performance.md
--->

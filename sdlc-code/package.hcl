@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-code"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "TDD code development workflow with RED-GREEN-REFACTOR cycle, test creation, implementation, and verification"
   platforms   = ["claude-code", "github-copilot"]
 }

@@ -8,7 +8,7 @@ mcpServers:
 
 # Git Commit Helper Skill
 
-This skill provides **intelligent git commit message generation** following conventional commit format with automatic Jira ticket linking.
+This skill provides **intelligent git commit message generation** following conventional commit format with automatic ticket linking.
 
 ## When This Skill is Invoked
 
@@ -56,9 +56,9 @@ git diff --staged
 - `test`: Test additions/updates
 - `chore`: Maintenance tasks
 
-### Step 4: Find Jira Tickets
+### Step 4: Find Tickets
 
-**Check for Jira ticket references:**
+**Check for ticket references:**
 - Branch name (e.g., `feature/PROJ-123-description`)
 - Recent commit messages
 - File comments
@@ -90,7 +90,7 @@ Closes PROJ-123
 **Message Guidelines:**
 - Subject: 50 chars or less, imperative mood
 - Body: Explain WHY, not WHAT (optional)
-- Footer: Reference Jira tickets
+- Footer: Reference tickets
 
 ### Step 6: Create Commit
 
@@ -152,7 +152,7 @@ Closes PROJ-123
 | Restructuring without behavior change | refactor |
 | Build configs, tooling | chore |
 
-## Jira Ticket Detection
+## Ticket Detection
 
 **Check these sources in order:**
 
@@ -216,7 +216,7 @@ git init
 
 1. **Be Descriptive:** Subject line should be clear
 2. **Be Consistent:** Follow conventional commit format
-3. **Link Tickets:** Always reference Jira issues when relevant
+3. **Link Tickets:** Always reference related issues when relevant
 4. **Add Body:** Explain WHY for non-trivial changes
 5. **Atomic Commits:** Each commit should be logical unit
 
@@ -273,4 +273,4 @@ to improve code organization and testability.
 
 ---
 
-When invoked, this skill will create well-formatted git commits with intelligent message generation and automatic Jira ticket linking.
+When invoked, this skill will create well-formatted git commits with intelligent message generation and automatic ticket linking.

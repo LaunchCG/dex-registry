@@ -47,6 +47,3 @@ tests/
 - Parallel execution for speed
 - Trace viewer for debugging
 - Network mocking for external APIs
-
-<!-- To be populated from /Users/jim/Projects/draftbox/.claude/skills/playwright-testing/SKILL.md -->
-<!-- 7 additional resource files available in draftbox -->

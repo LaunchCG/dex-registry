@@ -1,6 +1,6 @@
 package {
   name        = "docker-compose"
-  version     = "0.1.0"
+  version     = "0.1.1"
   description = "Docker Compose skill with MCP task automation"
   platforms   = ["claude-code", "github-copilot"]
 }

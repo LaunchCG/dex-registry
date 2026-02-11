@@ -4,7 +4,7 @@ description: Generate or validate product requirement documents (PRDs) using tem
 
 # /product-requirement
 
-Creates evidence-based PRDs or validates existing Epics against PRD standards.
+Creates evidence-based PRDs or validates existing epics against PRD standards.
 
 ## Usage
 
@@ -19,7 +19,7 @@ Creates evidence-based PRDs or validates existing Epics against PRD standards.
 ## Parameters
 
 - **description**: Natural language problem or feature description (build mode)
-- **epic-id**: Jira Epic key to validate (test mode, e.g., PROD-123)
+- **epic-id**: Epic key to validate (test mode, e.g., PROD-123)
 
 ## Execution Instructions
 
@@ -46,15 +46,9 @@ Extract the mode and content from command arguments:
 
 1. **Extract epic-id** from content
 2. **Validate epic-id format:** `^[A-Z][A-Z0-9]+-[0-9]+$`
-3. **Invoke the jira-cli-service skill:**
-   - Use the **Skill tool**
-   - Skill name: `"jira-cli-service"`
-   - Args: `"view <epic-id>"`
-4. **Store the epic data** returned by the skill
-5. **If fetch fails:** Report error to user and DO NOT invoke agent
-
-**Example:**
-- Skill tool with skill="jira-cli-service" and args="view PROD-123"
+3. **Fetch epic data** using available tracker integration (if installed)
+4. **Store the epic data** returned
+5. **If no tracker available or fetch fails:** Ask user to provide epic content directly
 
 ### Step 2: Invoke Agent with Pre-Fetched Data (REQUIRED)
 
@@ -86,7 +80,7 @@ Epic ID: <epic-id>
 <paste epic JSON or formatted data from Step 1.5>
 === END EPIC DATA ===
 
-IMPORTANT: Epic data is already fetched. DO NOT call jira-cli-service.
+IMPORTANT: Epic data is already fetched. DO NOT fetch it again.
 Validate this epic against PRD standards.
 """
 ```
@@ -100,7 +94,7 @@ Validate this epic against PRD standards.
 **DO NOT** invoke skills directly (e.g., `product-requirement-build`, `product-requirement-test-create`)
 **DO NOT** generate the PRD yourself
 **DO NOT** call MCP tools directly
-**DO NOT** create Jira Epics yourself
+**DO NOT** create tracker epics yourself
 **DO NOT** validate PRD standards yourself
 **DO NOT** fetch epic again (already provided to agent in test mode)
 
@@ -108,7 +102,7 @@ Validate this epic against PRD standards.
 
 The `ai-sdlc:product-requirement` agent will:
 1. Parse pre-fetched epic data from prompt (if test mode)
-2. **Build mode**: Generate PRD using evidence-based templates, create Epic in Jira
+2. **Build mode**: Generate PRD using evidence-based templates
 3. **Test mode**: Validate against PRD standards using provided epic data
 4. Retry up to 3 times if validation fails
 5. Return comprehensive results with quality scores
@@ -123,7 +117,7 @@ Once the agent completes, present its results to the user without modification.
 
 Generates or validates product requirement documents:
 
-- **Build mode** (default): Generate PRD using templates, create Epic in Jira
+- **Build mode** (default): Generate PRD using templates
 - **Test mode**: Validate existing Epic against PRD standards
 
 **Workflow:**
@@ -132,14 +126,14 @@ Generates or validates product requirement documents:
 1. Parse description from arguments
 2. Pass to product-requirement agent
 3. Agent generates evidence-based PRD
-4. Agent creates Epic in Jira
+4. Agent presents PRD to user
 
 **Test Mode:**
 1. Parse epic-id from arguments
-2. Fetch epic data via jira-cli-service skill
+2. Fetch epic data via available tracker integration
 3. Pass epic data to agent
 4. Agent validates against PRD standards
-5. Agent posts feedback to Jira
+5. Agent presents feedback to user
 
 **PRD includes:**
 - Executive summary

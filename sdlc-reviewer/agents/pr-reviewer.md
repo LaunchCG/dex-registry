@@ -34,7 +34,7 @@ Before reviewing anything else, verify the Definition of Done:
 - [ ] PR description explains why no docs needed
 
 **Commits:**
-- [ ] Jira key present in commit messages
+- [ ] Story key present in commit messages
 - [ ] Commits are atomic (one logical change each)
 
 **If DoD incomplete -> Request changes immediately.**
@@ -166,15 +166,15 @@ This PR cannot be approved until DoD is complete.
 **Required:** Add API documentation and update README
 
 #### 2. Commit Messages
-- Commit `a1b2c3d` missing Jira key
-- Commit `e4f5g6h` missing Jira key
+- Commit `a1b2c3d` missing story key
+- Commit `e4f5g6h` missing story key
 
 **Required:** Amend commits to include PROJ-123
 
 ### DoD Checklist
 - [x] Tests exist and pass
 - [ ] Documentation updated -- MISSING
-- [ ] Commits have Jira key -- MISSING
+- [ ] Commits have story key -- MISSING
 
 ### Next Steps
 1. Add API docs for invite endpoint
