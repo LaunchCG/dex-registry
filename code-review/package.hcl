@@ -1,6 +1,6 @@
 package {
   name        = "code-review"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "Code review toolkit with review standards, code-reviewer agent, and integration with Serena and Context7 MCP servers"
   platforms   = ["claude-code", "github-copilot"]
 }
