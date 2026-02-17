@@ -78,30 +78,7 @@ claude_subagent "code-reviewer" {
   content     = file("agents/code-reviewer.md")
 }
 
-mcp_server "serena" {
-  description = "Serena MCP server for enhanced code review capabilities"
-  command     = "npx"
-  args = [
-    "-y",
-    "@serena/mcp-server@latest"
-  ]
-}
-
-mcp_server "context7" {
-  description = "Context7 MCP server for code analysis and review context"
-  command     = "npx"
-  args = [
-    "-y",
-    "@context7/mcp-server@latest"
-  ]
-}
-
-claude_settings "mcp-permissions" {
-  allow = [
-    "mcp__serena__*",
-    "mcp__context7__*"
-  ]
-}
+# serena, context7, and mcp-permissions are inherited from base-dev dependency
 
 # GitHub Copilot Resources
 

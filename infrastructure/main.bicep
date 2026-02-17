@@ -34,6 +34,17 @@ resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01
   name: 'default'
   properties: {
     isVersioningEnabled: true
+    cors: {
+      corsRules: [
+        {
+          allowedOrigins: ['*']
+          allowedMethods: ['GET', 'OPTIONS']
+          allowedHeaders: ['*']
+          exposedHeaders: ['*']
+          maxAgeInSeconds: 3600
+        }
+      ]
+    }
   }
 }
 
