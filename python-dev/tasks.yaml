@@ -1,7 +1,7 @@
 version: "1.0"
 
 tasks:
-  ruff:
+  py-ruff:
     description: "Run Ruff linting and formatting checks"
     expose_working_directory: true
     command: "uvx ruff {{.args}}"
@@ -12,7 +12,7 @@ tasks:
         required: false
         description: "Arguments for ruff (e.g., 'check .', 'format --check .')"
 
-  black:
+  py-black:
     description: "Run Black code formatter"
     expose_working_directory: true
     command: "uvx black {{.args}}"
@@ -23,7 +23,7 @@ tasks:
         required: false
         description: "Arguments for black (e.g., '--check .', '.')"
 
-  isort:
+  py-isort:
     description: "Run isort import formatter"
     expose_working_directory: true
     command: "uvx isort {{.args}}"
@@ -34,7 +34,7 @@ tasks:
         required: false
         description: "Arguments for isort (e.g., '--check-only .', '.')"
 
-  mypy:
+  py-mypy:
     description: "Run mypy type checking"
     expose_working_directory: true
     command: "uvx mypy {{.args}}"
@@ -45,8 +45,44 @@ tasks:
         required: false
         description: "Arguments for mypy (e.g., '--strict .', '.')"
 
-  lint:
+  py-lint:
     description: "Run all linting tools in sequence"
     expose_working_directory: true
     command: "uvx ruff check . && uvx black --check . && uvx isort --check-only . && uvx mypy ."
     type: oneshot
+    disable_mcp: true
+
+workflows:
+  py-lint-all:
+    description: "Run all Python linting checks with per-step visibility (ruff, black, isort, mypy)"
+    steps:
+      - task: py-ruff
+        args: "check ."
+      - task: py-black
+        args: "--check ."
+      - task: py-isort
+        args: "--check-only ."
+      - task: py-mypy
+        args: "."
+
+  py-format-all:
+    description: "Auto-format all Python code (ruff fix, black, isort)"
+    steps:
+      - task: py-ruff
+        args: "check --fix ."
+      - task: py-black
+        args: "."
+      - task: py-isort
+        args: "."
+
+prompts:
+  py-fix-code-quality:
+    description: "Guide for fixing Python code quality issues found by linters"
+    content: |
+      Analyze the linting output and fix all code quality issues:
+      1. Run {{.Tasks.py-ruff.Run}} with args "check ." to identify ruff issues
+      2. Run {{.Tasks.py-black.Run}} with args "--check ." to identify formatting issues
+      3. Run {{.Tasks.py-isort.Run}} with args "--check-only ." to identify import issues
+      4. Run {{.Tasks.py-mypy.Run}} with args "." to identify type errors
+      5. Fix ruff violations first, then black, then isort, then mypy
+      6. Re-run all checks to verify all issues are resolved.

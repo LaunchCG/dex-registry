@@ -1,6 +1,6 @@
 package {
   name        = "typescript"
-  version     = "0.1.1"
+  version     = "0.2.0"
   description = "TypeScript development toolkit with linting, testing, and E2E validation using Chrome DevTools MCP"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -17,21 +17,17 @@ claude_skill "testing" {
 
 claude_rule "typescript-tasks-rule" {
   description = "Enforce MCP usage"
-  content = "You must use the typescript tasks MCP tools for all TypeScript operations including linting, type checking, testing, and building. Never run tsc, eslint, vitest, or other TypeScript commands directly via Bash."
+  content = "You must use the runbook MCP tools for all TypeScript operations including linting, type checking, testing, and building. Never run tsc, eslint, vitest, or other TypeScript commands directly via Bash."
 }
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".mcp_tasks/typescript_tasks.yaml"
+  dest = ".dev_workflow/typescript.yaml"
 }
 
-mcp_server "typescript-tasks" {
-  description = "TypeScript development task automation"
-  command     = "dev-toolkit-mcp"
-  args = [
-    "-config",
-    ".mcp_tasks/typescript_tasks.yaml"
-  ]
+mcp_server "runbook" {
+  description = "Runbook task automation (https://runbookmcp.dev)"
+  command     = "runbook"
 }
 
 mcp_server "chrome-devtools" {
@@ -46,7 +42,7 @@ mcp_server "chrome-devtools" {
 claude_settings "mcp-permissions" {
   allow = [
     "mcp__chrome-devtools__*",
-    "mcp__typescript-tasks__*"
+    "mcp__runbook__*"
   ]
 }
 

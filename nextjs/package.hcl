@@ -1,6 +1,6 @@
 package {
   name        = "nextjs"
-  version     = "0.1.1"
+  version     = "0.2.0"
   description = "Next.js 16+ App Router expert: Server/Client Components, Server Actions, API routes, middleware, authentication, and data fetching patterns"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -27,21 +27,22 @@ claude_skill "nextjs" {
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".mcp_tasks/nextjs_tasks.yaml"
+  dest = ".dev_workflow/nextjs.yaml"
 }
 
-mcp_server "nextjs-tasks" {
-  description = "Next.js development task automation"
-  command     = "dev-toolkit-mcp"
-  args = [
-    "-config",
-    ".mcp_tasks/nextjs_tasks.yaml"
-  ]
+mcp_server "runbook" {
+  description = "Runbook task automation (https://runbookmcp.dev)"
+  command     = "runbook"
+}
+
+claude_rule "nextjs-tasks-rule" {
+  description = "Enforce MCP usage"
+  content = "You must use the runbook MCP tools for all Next.js operations including dev server, building, linting, type checking, testing, and database operations. Never run next, vitest, playwright, or prisma commands directly via Bash."
 }
 
 claude_settings "mcp-permissions" {
   allow = [
-    "mcp__dev-toolkit-mcp"
+    "mcp__runbook__*"
   ]
 }
 

@@ -1,6 +1,6 @@
 package {
   name        = "docker-compose"
-  version     = "0.1.1"
+  version     = "0.2.0"
   description = "Docker Compose skill with MCP task automation"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -12,26 +12,22 @@ claude_skill "docker-compose" {
 
 claude_rule "docker-compose-rule" {
   description = "Enforce MCP usage"
-  content = "You must use the docker compose tasks MCP tools for all docker compose operations. Never run docker compose commands directly via Bash."
+  content = "You must use the runbook MCP tools for all docker compose operations. Never run docker compose commands directly via Bash."
 }
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".mcp_tasks/docker_compose_tasks.yaml"
+  dest = ".dev_workflow/docker-compose.yaml"
 }
 
-mcp_server "docker-compose-tasks" {
-  description = "Docker Compose task automation"
-  command     = "dev-toolkit-mcp"
-  args = [
-    "-config",
-    ".mcp_tasks/docker_compose_tasks.yaml"
-  ]
+mcp_server "runbook" {
+  description = "Runbook task automation (https://runbookmcp.dev)"
+  command     = "runbook"
 }
 
 claude_settings "mcp-permissions" {
   allow = [
-    "mcp__docker-compose-tasks__*"
+    "mcp__runbook__*"
   ]
 }
 

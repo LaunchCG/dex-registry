@@ -1,12 +1,29 @@
 version: "1.0"
 
+task_groups:
+  dev:
+    description: "Development servers"
+    tasks: [next-dev, next-start]
+  build:
+    description: "Build and deployment"
+    tasks: [next-build, next-analyze, next-build-analyze]
+  quality:
+    description: "Code quality"
+    tasks: [next-lint, next-lint-fix, next-type-check, next-format, next-format-check]
+  testing:
+    description: "Testing"
+    tasks: [next-test, next-test-watch, next-test-ui, next-test-coverage, next-test-e2e, next-test-e2e-ui]
+  database:
+    description: "Database operations (Prisma)"
+    tasks: [db-generate, db-migrate, db-migrate-deploy, db-push, db-seed, db-studio, db-reset]
+
 tasks:
   # Development
   next-dev:
     description: "Start Next.js development server"
     expose_working_directory: true
     command: "npx next dev {{if .port}}-p {{.port}}{{end}}"
-    type: oneshot
+    type: daemon
     parameters:
       port:
         type: string
@@ -24,7 +41,7 @@ tasks:
     description: "Start Next.js production server"
     expose_working_directory: true
     command: "npx next start {{if .port}}-p {{.port}}{{end}}"
-    type: oneshot
+    type: daemon
     parameters:
       port:
         type: string
@@ -55,64 +72,69 @@ tasks:
     command: "npx next lint --fix"
     type: oneshot
 
-  type-check:
+  next-type-check:
     description: "Run TypeScript type checking"
     expose_working_directory: true
     command: "npx tsc --noEmit"
     type: oneshot
 
-  format:
+  next-format:
     description: "Format code with Prettier"
     expose_working_directory: true
     command: "npx prettier --write ."
     type: oneshot
+    disable_mcp: true
 
-  format-check:
+  next-format-check:
     description: "Check code formatting with Prettier"
     expose_working_directory: true
     command: "npx prettier --check ."
     type: oneshot
 
-  validate:
+  next-validate:
     description: "Run full validation (type-check, lint, test)"
     expose_working_directory: true
     command: "npx tsc --noEmit && npx next lint && npm test"
     type: oneshot
+    disable_mcp: true
 
   # Testing
-  test:
+  next-test:
     description: "Run all tests"
     expose_working_directory: true
     command: "npx vitest run"
     type: oneshot
 
-  test-watch:
+  next-test-watch:
     description: "Run tests in watch mode"
     expose_working_directory: true
     command: "npx vitest"
     type: oneshot
+    disable_mcp: true
 
-  test-ui:
+  next-test-ui:
     description: "Run tests with UI"
     expose_working_directory: true
     command: "npx vitest --ui"
     type: oneshot
+    disable_mcp: true
 
-  test-coverage:
+  next-test-coverage:
     description: "Run tests with coverage report"
     expose_working_directory: true
     command: "npx vitest run --coverage"
     type: oneshot
 
-  test-e2e:
+  next-test-e2e:
     description: "Run E2E tests with Playwright"
     command: "npx playwright test"
     type: oneshot
 
-  test-e2e-ui:
+  next-test-e2e-ui:
     description: "Run E2E tests with Playwright UI"
     command: "npx playwright test --ui"
     type: oneshot
+    disable_mcp: true
 
   # Database (Prisma)
   db-generate:
@@ -154,7 +176,7 @@ tasks:
     description: "Open Prisma Studio"
     expose_working_directory: true
     command: "npx prisma studio"
-    type: oneshot
+    type: daemon
 
   db-reset:
     description: "Reset database (WARNING: destroys all data)"
@@ -163,28 +185,59 @@ tasks:
     type: oneshot
 
   # Environment
-  generate-env:
+  next-generate-env:
     description: "Generate .env.local from .env.example"
     expose_working_directory: true
     command: "cp .env.example .env.local"
     type: oneshot
+    disable_mcp: true
 
   # Deployment
-  build-analyze:
+  next-build-analyze:
     description: "Build and analyze bundle"
     expose_working_directory: true
     command: "ANALYZE=true npm run build"
     type: oneshot
+    disable_mcp: true
 
   # Clean
-  clean:
+  next-clean:
     description: "Clean build artifacts and dependencies"
     expose_working_directory: true
     command: "rm -rf .next node_modules && npm install"
     type: oneshot
 
-  clean-cache:
+  next-clean-cache:
     description: "Clean Next.js cache"
     expose_working_directory: true
     command: "rm -rf .next/cache"
     type: oneshot
+    disable_mcp: true
+
+workflows:
+  next-validate-all:
+    description: "Run full Next.js validation (type-check, lint, test)"
+    steps:
+      - task: next-type-check
+      - task: next-lint
+      - task: next-test
+
+prompts:
+  next-getting-started:
+    description: "Guide for setting up a new Next.js project with this package"
+    content: |
+      To get started with this Next.js project:
+      1. Install dependencies: npm install
+      2. Set up environment: copy .env.example to .env.local
+      3. Set up database: run {{.Tasks.db-generate.Run}} then {{.Tasks.db-migrate.Run}}
+      4. Start dev server: {{.Tasks.next-dev.Start}}
+      5. Run validation: use the next-validate-all workflow to check types, lint, and tests
+
+  next-pre-commit:
+    description: "Pre-commit checklist for Next.js projects"
+    content: |
+      Before committing, run the next-validate-all workflow to ensure:
+      1. TypeScript types are correct: {{.Tasks.next-type-check.Run}}
+      2. ESLint passes: {{.Tasks.next-lint.Run}}
+      3. All tests pass: {{.Tasks.next-test.Run}}
+      Fix any issues before committing.

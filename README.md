@@ -75,6 +75,7 @@ dex install sdlc-code@0.1.0 -r nexus-template --save
 - Bicep CLI (bundled with Azure CLI)
 - dex CLI
 - Python 3
+- [Runbook MCP](https://runbookmcp.dev) (`runbook`) — required by packages that include task automation (typescript, python-dev, nextjs, vite, docker-compose). Install: `curl -fsSL https://runbookmcp.dev/install.sh | bash`
 
 ### Deploy Infrastructure + Packages
 
@@ -111,6 +112,12 @@ This provisions an Azure Storage Account with static website hosting and public 
 source infrastructure/config.sh
 curl -s "$REGISTRY_URL/registry.json" | python3 -m json.tool
 ```
+
+## Task Automation (Runbook MCP)
+
+Packages that include development tasks use [Runbook MCP](https://runbookmcp.dev) for task automation. Task files are deployed to `.dev_workflow/` where runbook auto-discovers and merges them. Each package contributes its own YAML file (e.g., `.dev_workflow/typescript.yaml`).
+
+This means installing multiple task-enabled packages gives you a single unified `runbook` MCP server with all tasks, workflows, and prompts from every installed package.
 
 ## CI/CD
 

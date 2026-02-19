@@ -1,6 +1,6 @@
 package {
   name        = "python-dev"
-  version     = "0.1.1"
+  version     = "0.2.0"
   description = "Python development toolkit with style guidelines, type hints, testing patterns, and code quality standards"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -42,26 +42,22 @@ claude_subagent "python-tester" {
 # Task automation via MCP
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".mcp_tasks/python_tasks.yaml"
+  dest = ".dev_workflow/python-dev.yaml"
 }
 
-mcp_server "python-tasks" {
-  description = "Python development task automation"
-  command     = "dev-toolkit-mcp"
-  args = [
-    "-config",
-    ".mcp_tasks/python_tasks.yaml"
-  ]
+mcp_server "runbook" {
+  description = "Runbook task automation (https://runbookmcp.dev)"
+  command     = "runbook"
 }
 
 claude_rule "python-tasks-rule" {
   description = "Enforce MCP usage"
-  content = "You must use the python-tasks MCP tools for all Python linting, formatting, and type checking operations. Never run ruff, mypy, black, or isort commands directly via Bash."
+  content = "You must use the runbook MCP tools for all Python linting, formatting, and type checking operations. Never run ruff, mypy, black, or isort commands directly via Bash."
 }
 
 claude_settings "mcp-permissions" {
   allow = [
-    "mcp__python-tasks__*"
+    "mcp__runbook__*"
   ]
 }
 

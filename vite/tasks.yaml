@@ -82,8 +82,15 @@ tasks:
         default: ""
         description: "Additional arguments"
 
-  type-check:
+  vite-type-check:
     description: "Run TypeScript type checking"
     expose_working_directory: true
     command: "npx tsc --noEmit"
     type: oneshot
+
+workflows:
+  vite-build-and-check:
+    description: "Build for production and type-check"
+    steps:
+      - task: vite-type-check
+      - task: vite-build

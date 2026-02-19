@@ -1,11 +1,7 @@
 {
   "mcpServers": {
-    "dev-toolkit-mcp": {
-      "args": [
-        "-config",
-        ".mcp-tasks.yaml"
-      ],
-      "command": "dev-toolkit-mcp"
+    "runbook": {
+      "command": "runbook"
     }
   }
 }

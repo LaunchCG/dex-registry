@@ -1,13 +1,13 @@
 version: "1.0"
 
 tasks:
-  list-containers:
+  dc-list-containers:
     description: "List Docker Compose containers"
     expose_working_directory: true
     command: "docker-compose ps"
     type: oneshot
 
-  view-logs:
+  dc-view-logs:
     description: "View logs for a Docker Compose service"
     expose_working_directory: true
     command: "docker-compose logs --tail {{.lines}} {{.service}}"
@@ -23,7 +23,7 @@ tasks:
         default: "all"
         description: "Number of lines to show (e.g., '100' or 'all')"
 
-  exec-command:
+  dc-exec-command:
     description: "Execute command in a Docker Compose service container"
     expose_working_directory: true
     command: "docker-compose exec {{.service}} {{.command}}"
@@ -38,7 +38,7 @@ tasks:
         required: true
         description: "Command to execute"
 
-  restart-service:
+  dc-restart-service:
     description: "Restart a Docker Compose service"
     expose_working_directory: true
     command: "docker-compose restart {{.service}}"
@@ -49,7 +49,7 @@ tasks:
         required: true
         description: "Name of the service"
 
-  rebuild-service:
+  dc-rebuild-service:
     description: "Rebuild and restart a service"
     expose_working_directory: true
     command: "docker-compose up -d --build {{.service}}"
@@ -59,3 +59,21 @@ tasks:
         type: string
         required: true
         description: "Name of the service"
+
+workflows:
+  dc-rebuild-and-verify:
+    description: "Rebuild a service and verify containers are running"
+    steps:
+      - task: dc-rebuild-service
+      - task: dc-list-containers
+
+prompts:
+  dc-debug-service:
+    description: "Guide for debugging a failing Docker Compose service"
+    content: |
+      To debug a failing Docker Compose service:
+      1. Check container status: {{.Tasks.dc-list-containers.Run}}
+      2. View recent logs: {{.Tasks.dc-view-logs.Run}} for the failing service
+      3. Try restarting: {{.Tasks.dc-restart-service.Run}}
+      4. If restart doesn't help, rebuild: {{.Tasks.dc-rebuild-service.Run}}
+      5. Check logs again after rebuild to verify the fix

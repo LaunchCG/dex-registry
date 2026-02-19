@@ -1,6 +1,6 @@
 package {
   name        = "vite"
-  version     = "0.1.1"
+  version     = "0.2.0"
   description = "Vite expert: lightning-fast dev server, HMR, production builds, framework integration, and modern build optimization"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -16,21 +16,22 @@ claude_skill "vite" {
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".mcp_tasks/vite_tasks.yaml"
+  dest = ".dev_workflow/vite.yaml"
 }
 
-mcp_server "vite-tasks" {
-  description = "Vite development task automation"
-  command     = "dev-toolkit-mcp"
-  args = [
-    "-config",
-    ".mcp_tasks/vite_tasks.yaml"
-  ]
+mcp_server "runbook" {
+  description = "Runbook task automation (https://runbookmcp.dev)"
+  command     = "runbook"
+}
+
+claude_rule "vite-tasks-rule" {
+  description = "Enforce MCP usage"
+  content = "You must use the runbook MCP tools for all Vite operations including dev server, building, previewing, and type checking. Never run vite or tsc commands directly via Bash."
 }
 
 claude_settings "mcp-permissions" {
   allow = [
-    "mcp__dev-toolkit-mcp"
+    "mcp__runbook__*"
   ]
 }
 

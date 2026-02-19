@@ -1,7 +1,7 @@
 version: "1.0"
 
 tasks:
-  test:
+  ts-test:
     description: "Run Jest tests"
     expose_working_directory: true
     command: "npx jest {{.args}}"
@@ -12,29 +12,31 @@ tasks:
         required: false
         description: "Additional arguments for Jest (e.g., --coverage, --watch, file paths)"
 
-  test-watch:
+  ts-test-watch:
     description: "Run Jest in watch mode"
     expose_working_directory: true
     command: "npx jest --watch {{.args}}"
     type: oneshot
+    disable_mcp: true
     parameters:
       args:
         type: string
         required: false
         description: "Additional arguments for Jest"
 
-  test-coverage:
+  ts-test-coverage:
     description: "Run Jest with coverage report"
     expose_working_directory: true
     command: "npx jest --coverage {{.args}}"
     type: oneshot
+    disable_mcp: true
     parameters:
       args:
         type: string
         required: false
         description: "Additional arguments for Jest"
 
-  lint:
+  ts-lint:
     description: "Run ESLint"
     expose_working_directory: true
     command: "npx eslint {{.args}}"
@@ -45,7 +47,7 @@ tasks:
         required: false
         description: "Additional arguments for ESLint (e.g., file paths, patterns)"
 
-  lint-fix:
+  ts-lint-fix:
     description: "Run ESLint with auto-fix"
     expose_working_directory: true
     command: "npx eslint --fix {{.args}}"
@@ -56,7 +58,7 @@ tasks:
         required: false
         description: "Additional arguments for ESLint"
 
-  type-check:
+  ts-type-check:
     description: "Run TypeScript type checking"
     expose_working_directory: true
     command: "npx tsc --noEmit {{.args}}"
@@ -66,3 +68,11 @@ tasks:
         type: string
         required: false
         description: "Additional TypeScript compiler arguments"
+
+workflows:
+  ts-quality-check:
+    description: "Run full TypeScript quality checks (lint, type-check, test)"
+    steps:
+      - task: ts-lint
+      - task: ts-type-check
+      - task: ts-test

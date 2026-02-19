@@ -1,6 +1,6 @@
 package {
   name        = "code-review"
-  version     = "0.1.2"
+  version     = "0.2.0"
   description = "Code review toolkit with review standards, code-reviewer agent, and integration with Serena and Context7 MCP servers"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -76,6 +76,11 @@ claude_rules "review-standards" {
 claude_subagent "code-reviewer" {
   description = "Specialized agent for conducting thorough code reviews and providing detailed feedback"
   content     = file("agents/code-reviewer.md")
+}
+
+file "tasks" {
+  src  = "tasks.yaml"
+  dest = ".dev_workflow/code-review.yaml"
 }
 
 # serena, context7, and mcp-permissions are inherited from base-dev dependency

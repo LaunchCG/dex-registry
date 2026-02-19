@@ -41,3 +41,16 @@ tasks:
       curl -s "$REGISTRY_URL/registry.json" | python3 -c "import sys,json; [print(k) for k in json.load(sys.stdin)['packages']]"
     working_directory: "."
     shell: bash
+
+workflows:
+  full-deploy:
+    description: "Deploy infrastructure and all packages"
+    steps:
+      - task: deploy-infra
+      - task: deploy
+
+  verify-deploy:
+    description: "Deploy packages and verify the registry"
+    steps:
+      - task: deploy
+      - task: verify-registry
