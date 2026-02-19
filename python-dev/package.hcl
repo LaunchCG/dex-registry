@@ -1,6 +1,6 @@
 package {
   name        = "python-dev"
-  version     = "0.2.1"
+  version     = "0.2.2"
   description = "Python development toolkit with style guidelines, type hints, testing patterns, and code quality standards"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -42,7 +42,7 @@ claude_subagent "python-tester" {
 # Task automation via MCP
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".dev_workflow/python-dev.yaml"
+  dest = ".runbook/python-dev.yaml"
 }
 
 mcp_server "runbook" {

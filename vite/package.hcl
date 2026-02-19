@@ -1,6 +1,6 @@
 package {
   name        = "vite"
-  version     = "0.2.1"
+  version     = "0.2.2"
   description = "Vite expert: lightning-fast dev server, HMR, production builds, framework integration, and modern build optimization"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -16,7 +16,7 @@ claude_skill "vite" {
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".dev_workflow/vite.yaml"
+  dest = ".runbook/vite.yaml"
 }
 
 mcp_server "runbook" {

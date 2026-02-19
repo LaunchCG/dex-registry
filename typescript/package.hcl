@@ -1,6 +1,6 @@
 package {
   name        = "typescript"
-  version     = "0.2.0"
+  version     = "0.2.1"
   description = "TypeScript development toolkit with linting, testing, and E2E validation using Chrome DevTools MCP"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -22,7 +22,7 @@ claude_rule "typescript-tasks-rule" {
 
 file "tasks" {
   src  = "tasks.yaml"
-  dest = ".dev_workflow/typescript.yaml"
+  dest = ".runbook/typescript.yaml"
 }
 
 mcp_server "runbook" {
