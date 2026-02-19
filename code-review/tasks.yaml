@@ -84,10 +84,10 @@ prompts:
 
       Run these now to understand the change:
 
-      1. {{.Tasks.cr-git-cmd.Run}} with args `diff main...HEAD` — see all changed lines
-      2. {{.Tasks.cr-git-cmd.Run}} with args `log main...HEAD --oneline` — understand commit intent
-      3. {{.Tasks.cr-git-cmd.Run}} with args `diff --stat main...HEAD` — get files changed summary
-      4. {{.Tasks.cr-detect-languages.Run}} — identify languages in scope
+      1. {{run_task "cr-git-cmd"}} with args `diff main...HEAD` — see all changed lines
+      2. {{run_task "cr-git-cmd"}} with args `log main...HEAD --oneline` — understand commit intent
+      3. {{run_task "cr-git-cmd"}} with args `diff --stat main...HEAD` — get files changed summary
+      4. {{run_task "cr-detect-languages"}} — identify languages in scope
 
       ## Step 2: Size Assessment
 
@@ -107,7 +107,7 @@ prompts:
       5. **Severity Classification** — apply [CRITICAL] / [ERROR] / [WARNING] / [SUGGESTION] per your skill
       6. **Report Generation** — use the output format template from your skill
 
-      If large files are flagged, run {{.Tasks.cr-analyze-module-size.Run}} to identify oversized modules.
+      If large files are flagged, run {{run_task "cr-analyze-module-size"}} to identify oversized modules.
 
       ## Step 4: Produce the Report
 
