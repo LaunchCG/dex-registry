@@ -46,29 +46,6 @@ tasks:
         description: "Arguments for mypy (e.g., '--strict .', '.')"
 
 
-workflows:
-  py-lint-all:
-    description: "Run all Python linting checks with per-step visibility (ruff, black, isort, mypy)"
-    steps:
-      - task: py-ruff
-        args: "check ."
-      - task: py-black
-        args: "--check ."
-      - task: py-isort
-        args: "--check-only ."
-      - task: py-mypy
-        args: "."
-
-  py-format-all:
-    description: "Auto-format all Python code (ruff fix, black, isort)"
-    steps:
-      - task: py-ruff
-        args: "check --fix ."
-      - task: py-black
-        args: "."
-      - task: py-isort
-        args: "."
-
 prompts:
   py-fix-code-quality:
     description: "Guide for fixing Python code quality issues found by linters"
