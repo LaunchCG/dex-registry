@@ -189,5 +189,3 @@ nexus-template/
 ## License
 
 MIT
-
-
