@@ -21,6 +21,10 @@ mcp_server "grafana" {
   description = "Access Grafana dashboards, alerts, incidents, and observability data"
   command     = "npx"
   args        = ["-y", "@leval/mcp-grafana"]
+  env = {
+    GRAFANA_URL                   = "$${GRAFANA_URL}"
+    GRAFANA_SERVICE_ACCOUNT_TOKEN = "$${GRAFANA_SERVICE_ACCOUNT_TOKEN}"
+  }
 }
 
 mcp_server "datadog" {
@@ -35,10 +39,16 @@ mcp_server "cloudwatch" {
   args        = ["-y", "@teolin/mcp-cloudwatch-logs"]
 }
 
+
+
 mcp_server "elasticsearch" {
-  description = "Search and analyze Elasticsearch indices and documents"
+  description = "Query and analyze Elasticsearch indices, mappings, and documents"
   command     = "npx"
-  args        = ["-y", "elasticsearch-mcp@latest"]
+  args        = ["-y", "@elastic/mcp-server-elasticsearch"]
+  env = {
+    ES_URL     = "$${ES_URL}"
+    ES_API_KEY = "$${ES_API_KEY}"
+  }
 }
 
 # --- Claude Skills ---
