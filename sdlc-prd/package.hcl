@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-prd"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "Product requirement document generation following evidence-based product management principles"
   platforms   = ["claude-code", "github-copilot"]
 }

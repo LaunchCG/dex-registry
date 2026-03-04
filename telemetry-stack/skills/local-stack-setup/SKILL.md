@@ -1,9 +1,3 @@
-<!-- dex:local-stack-setup -->
----
-name: local-stack-setup
-description: How to start, stop, and use the local telemetry stack (Prometheus, Grafana, OTEL Collector, Elasticsearch, Loki)
----
-
 # Local Telemetry Stack
 
 You know how to spin up and manage the local telemetry stack for development. Installing the `telemetry-stack` package distributes all infrastructure config files to `.dex/stacks/telemetry-stack/` in the project root. All stack operations use runbook MCP tasks — never direct Bash commands.

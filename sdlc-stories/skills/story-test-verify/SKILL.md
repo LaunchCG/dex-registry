@@ -1,9 +1,3 @@
----
-name: story-test-verify
-description: Verify user story meets DoR standards defined in test-create phase
-allowed-tools: []
----
-
 # Story Test Verify Skill
 
 Validates that generated or refined user stories meet the Definition of Ready (DoR) standards defined in the test-create phase.

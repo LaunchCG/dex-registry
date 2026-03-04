@@ -1,8 +1,3 @@
----
-name: telemetry-read-only
-description: Default to read-only operations when using telemetry MCP servers to protect production monitoring
----
-
 # Telemetry Read-Only Rule
 
 When using telemetry and observability MCP servers (Prometheus, Grafana, Datadog, CloudWatch, Elasticsearch), **default to read-only operations**.

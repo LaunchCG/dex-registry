@@ -1,11 +1,3 @@
----
-name: pr-creator
-description: Creates pull requests with proper descriptions, linked issues, and review assignments
-autoInvoke:
-  onFileChange: false
-  onKeyword: ["create PR", "pull request", "open PR"]
----
-
 # PR Creator Skill
 
 Creates well-structured pull requests with comprehensive descriptions, linked stories, and appropriate reviewer assignments.

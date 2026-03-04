@@ -1,11 +1,3 @@
----
-name: git-commit-helper
-description: Generates commit messages following conventional commit format and creates git commits
-allowed-tools: Bash, Read, Glob
-mcpServers:
-  - github
----
-
 # Git Commit Helper Skill
 
 This skill provides **intelligent git commit message generation** following conventional commit format with automatic ticket linking.

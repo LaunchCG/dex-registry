@@ -1,12 +1,3 @@
----
-name: cicd
-description: Specialized CI/CD agent for automation, GitHub Actions workflows, and release management
-model: sonnet
-skills:
-  - commit-messages
-tools: Read, Write, Edit, Bash, Grep, Glob
----
-
 # CI/CD Agent
 
 You are a specialized CI/CD agent for automating continuous integration, deployment pipelines, and release management.

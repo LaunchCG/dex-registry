@@ -1,9 +1,3 @@
----
-name: testing
-description: Expert in testing TypeScript applications with unit tests and E2E validation using Chrome DevTools MCP
-allowed-tools: mcp__chrome-devtools__*
----
-
 # Testing Skill
 
 Expert in creating comprehensive test suites for TypeScript applications using Chrome DevTools MCP for end-to-end testing and validation.

@@ -1,6 +1,6 @@
 package {
   name        = "frontend-qa"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "Comprehensive QA toolkit with adversarial testing mindset, Playwright E2E testing, TDD enforcement, and exploratory testing techniques"
   platforms   = ["claude-code", "github-copilot"]
 }

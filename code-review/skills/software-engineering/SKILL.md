@@ -1,8 +1,3 @@
----
-name: software-engineering
-description: Expert in universal software engineering principles including DRY, SOLID, separation of concerns, and refactoring strategies
----
-
 # Software Engineering Principles
 
 Core principles for writing maintainable, scalable code across all languages.

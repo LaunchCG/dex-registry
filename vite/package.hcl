@@ -1,6 +1,6 @@
 package {
   name        = "vite"
-  version     = "0.2.2"
+  version     = "0.2.3"
   description = "Vite expert: lightning-fast dev server, HMR, production builds, framework integration, and modern build optimization"
   platforms   = ["claude-code", "github-copilot"]
 }

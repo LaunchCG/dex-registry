@@ -1,6 +1,6 @@
 package {
   name        = "tailwind-css"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "Comprehensive Tailwind CSS toolkit with Material Design 3 patterns, design tokens, dark mode support, and testing standards"
   platforms   = ["claude-code", "github-copilot"]
 }

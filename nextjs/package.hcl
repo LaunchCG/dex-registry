@@ -1,6 +1,6 @@
 package {
   name        = "nextjs"
-  version     = "0.2.1"
+  version     = "0.2.2"
   description = "Next.js 16+ App Router expert: Server/Client Components, Server Actions, API routes, middleware, authentication, and data fetching patterns"
   platforms   = ["claude-code", "github-copilot"]
 }

@@ -1,9 +1,3 @@
----
-name: architecture-build
-description: Analyze repository and generate documentation drafts following engineering best practices
-allowed-tools: Read, Glob, Grep
----
-
 # Architecture Build Skill
 
 Analyzes repository structure, detects technology patterns, and generates draft documentation following engineering best practices for repository documentation.

@@ -1,11 +1,3 @@
----
-name: code
-description: Orchestrates TDD cycle for code implementation with max 3 test-fix cycles, following RED-GREEN-REFACTOR
-model: sonnet
-skills: code-test-create, code-build, code-test-verify, git-commit-helper
-tools: Read, Glob, Grep, Bash, code-test-create, code-build, code-test-verify, git-commit-helper
----
-
 # Code Agent
 
 You orchestrate the Test-Driven Development (TDD) cycle for code implementation, following the RED-GREEN-REFACTOR methodology to implement user stories with full test coverage.

@@ -1,9 +1,3 @@
----
-name: product-requirement-build
-description: Generate comprehensive product requirement documents (PRDs) following evidence-based product management principles using the unified product-requirement-build.md template
-allowed-tools: []
----
-
 # Product Requirement Build Skill
 
 Generates comprehensive Product Requirement Documents (PRDs) following evidence-based product management principles using the unified product-requirement-build.md template.

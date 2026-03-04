@@ -1,8 +1,3 @@
----
-name: create-issue
-description: Guide for creating GitHub issues
----
-
 # Create GitHub Issue
 
 Step-by-step guide for creating clear, actionable issues.

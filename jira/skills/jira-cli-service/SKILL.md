@@ -1,9 +1,3 @@
----
-name: jira-cli-service
-description: Jira service layer using Atlassian CLI (acli) wrapper scripts for reliable local execution
-allowed-tools: Bash
----
-
 # Jira CLI Service Skill
 
 Wrapper scripts for Atlassian CLI (acli) operations with automatic authentication and error handling.

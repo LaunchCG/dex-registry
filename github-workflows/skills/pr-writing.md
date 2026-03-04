@@ -1,8 +1,3 @@
----
-name: pr-writing
-description: Create high-quality pull requests with structured descriptions
----
-
 # PR Writing Skill
 
 Expert guidance for creating well-structured, informative pull requests on GitHub.

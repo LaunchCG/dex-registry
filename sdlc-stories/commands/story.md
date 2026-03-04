@@ -1,7 +1,3 @@
----
-description: Generate or validate user stories using template-based methodology with Definition of Ready compliance
----
-
 # /story
 
 Generates DoR-compliant user stories from descriptions or validates existing stories.

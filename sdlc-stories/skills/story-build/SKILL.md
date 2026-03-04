@@ -1,9 +1,3 @@
----
-name: story-build
-description: Generate or refine user stories with complete acceptance criteria and DoR compliance
-allowed-tools: Bash
----
-
 # Story Build Skill
 
 Generates well-structured, AI-ready user stories with comprehensive acceptance criteria following Definition of Ready standards.

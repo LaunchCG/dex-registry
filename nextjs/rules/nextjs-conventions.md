@@ -1,9 +1,3 @@
-<!-- dex:nextjs -->
----
-name: nextjs-conventions
-description: Next.js development conventions and structural requirements. Always follow these patterns when working with Next.js applications.
----
-
 # Next.js Development Conventions
 
 ## File Structure Requirements

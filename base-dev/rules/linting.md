@@ -1,8 +1,3 @@
----
-name: linting
-description: Enforce code quality standards. Linting must pass before commits. Do not ignore linting errors unless explicitly instructed.
----
-
 # Linting Standards
 
 ## Core Principle

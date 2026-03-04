@@ -1,9 +1,3 @@
----
-name: story-test-create
-description: Create TDD validation tests for user stories to ensure Definition of Ready compliance
-allowed-tools: Bash
----
-
 # Story Test Create Skill
 
 Generates TDD-style validation tests for user stories to ensure they meet Definition of Ready (DoR) standards and are AI-ready for development.

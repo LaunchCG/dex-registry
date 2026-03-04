@@ -1,13 +1,3 @@
-<!-- dex:local-telemetry-setup -->
----
-name: local-telemetry-setup
-description: Configure telemetry-mcp MCP servers to connect to a locally running telemetry stack
-mcpServers:
-  - prometheus
-  - grafana
-  - elasticsearch
----
-
 # Local Telemetry Setup
 
 You know how to configure the `telemetry-mcp` MCP servers to point at the local telemetry stack running via the `telemetry-stack` package.

@@ -1,9 +1,3 @@
-<!-- dex:app-instrumentation -->
----
-name: app-instrumentation
-description: OTEL instrumentation patterns for Python/FastAPI and Node.js to publish traces, metrics, and logs to the local telemetry stack or any OTLP backend
----
-
 # App Instrumentation with OpenTelemetry
 
 You know how to instrument Python/FastAPI and Node.js applications with OpenTelemetry to emit traces, metrics, and logs via OTLP to the local telemetry stack or any OTLP-compatible backend.

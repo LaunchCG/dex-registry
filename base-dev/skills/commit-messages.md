@@ -1,10 +1,3 @@
----
-name: commit-messages
-description: Expert in writing concise, factual git commit messages for Drift project without AI fluff. Use when committing code changes, creating releases, or reviewing commit history before PRs.
-version: 1.0.0
-dependencies: []
----
-
 # Commit Messages Skill
 
 Learn how to write concise, factual commit messages that describe **what changed**, not benefits or AI-generated fluff.

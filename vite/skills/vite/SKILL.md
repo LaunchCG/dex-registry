@@ -1,8 +1,3 @@
----
-name: vite
-description: Expert in Vite development patterns, native ES modules, lightning-fast HMR, production builds, framework integration, and modern build optimization. Use when working with Vite projects or build tooling.
----
-
 # Vite Development Skill
 
 Expert knowledge of Vite for modern web application development.

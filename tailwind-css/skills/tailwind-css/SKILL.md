@@ -1,8 +1,3 @@
----
-name: tailwind-css
-description: Expert in Tailwind CSS utility-first styling, design tokens, responsive design, and dark mode. References project design system and best practices.
----
-
 # Tailwind CSS Expert
 
 Expert in Tailwind CSS utility-first styling. Specializes in design token systems, responsive design, dark mode implementation, and performance optimization using Tailwind v4.

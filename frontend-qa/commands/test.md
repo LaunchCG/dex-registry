@@ -1,8 +1,3 @@
----
-name: test
-description: Run Playwright E2E tests
----
-
 # Test Command
 
 Run Playwright E2E test suite.

@@ -1,8 +1,3 @@
----
-name: nexus-methodology
-description: Launch Consulting Nexus AI-SDLC methodology - Director/Verifier model with DoR, TDD, and DoD quality gates
----
-
 # Nexus AI-SDLC Methodology
 
 Launch Consulting's structured approach to AI-augmented software delivery.

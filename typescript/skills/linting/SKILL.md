@@ -1,8 +1,3 @@
----
-name: linting
-description: Expert in maintaining code quality using ESLint and TypeScript
----
-
 # Linting Skill
 
 Expert in code quality enforcement for TypeScript projects.

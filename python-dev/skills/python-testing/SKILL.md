@@ -1,8 +1,3 @@
----
-name: python-testing
-description: Expert in Python testing with pytest, fixtures, mocking, test organization, and testing best practices
----
-
 # Python Testing Expert
 
 Expert in Python testing practices using pytest. Specializes in test organization, fixtures, parametrization, mocking, and comprehensive test strategies.

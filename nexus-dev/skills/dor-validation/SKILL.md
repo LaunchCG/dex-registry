@@ -1,9 +1,3 @@
----
-name: dor-validation
-description: Validates work items meet Definition of Ready criteria before sprint planning or development begins
-allowed-tools: []
----
-
 # Definition of Ready Validation Skill
 
 This skill validates that user stories meet Definition of Ready (DoR) criteria before they enter sprint planning or development. It ensures work items are adequately prepared for implementation.

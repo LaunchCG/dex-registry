@@ -1,8 +1,3 @@
----
-name: create-pr
-description: Guide for creating pull requests via GitHub
----
-
 # Create Pull Request
 
 Step-by-step guide for creating high-quality pull requests.

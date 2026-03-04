@@ -1,11 +1,3 @@
----
-name: security-scan
-description: Scans for security vulnerabilities in code changes and dependencies before deployment
-allowed-tools: mcp__github__*
-mcpServers:
-  - github
----
-
 # Security Scan Skill
 
 This skill scans for security vulnerabilities in code changes and dependencies to ensure secure deployments and protect against common security threats.

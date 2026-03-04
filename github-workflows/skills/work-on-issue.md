@@ -1,8 +1,3 @@
----
-name: work-on-issue
-description: Comprehensive workflow for analyzing, planning, and implementing GitHub issues with plan mode
----
-
 # Work on GitHub Issue
 
 Comprehensive workflow for tackling GitHub issues from analysis through planning to implementation.
