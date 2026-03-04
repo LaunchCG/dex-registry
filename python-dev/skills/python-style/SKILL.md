@@ -1,8 +1,3 @@
----
-name: python-style
-description: Expert in Python code style, PEP 8 standards, type hints, formatting with Ruff, and code quality best practices
----
-
 # Python Style Expert
 
 Expert in Python code style and formatting best practices. Specializes in PEP 8 compliance, type hints, Ruff formatting, import organization, and idiomatic Python patterns.

@@ -1,9 +1,3 @@
----
-name: code-build
-description: Implement code to pass tests created in test-create phase following TDD GREEN phase
-allowed-tools: []
----
-
 # Code Build Skill
 
 Implements code to pass the tests created in the test-create phase, following TDD's GREEN phase principle of writing minimal code to make tests pass.

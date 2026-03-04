@@ -1,8 +1,3 @@
----
-name: my-issues
-description: Guide for viewing and managing assigned GitHub issues
----
-
 # View My GitHub Issues
 
 Guide for tracking and managing your assigned issues.

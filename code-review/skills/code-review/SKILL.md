@@ -1,8 +1,3 @@
----
-name: code-review
-description: Orchestrates multi-dimensional code reviews across languages. Performs context gathering, language detection, universal quality analysis, severity classification, and structured reporting. Use when reviewing pull requests or code changes.
----
-
 # Code Review Orchestration Skill
 
 Expert orchestration for thorough, multi-dimensional code reviews across languages.

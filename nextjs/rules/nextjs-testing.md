@@ -1,9 +1,3 @@
-<!-- dex:nextjs -->
----
-name: nextjs-testing
-description: Next.js testing requirements and best practices. Always write tests for critical functionality.
----
-
 # Next.js Testing Requirements
 
 ## Test Coverage Requirements

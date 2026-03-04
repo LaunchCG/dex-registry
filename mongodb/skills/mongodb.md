@@ -1,8 +1,3 @@
----
-name: mongodb
-description: Expert in MongoDB and Mongoose ODM for Node.js
----
-
 # MongoDB & Mongoose Skill
 
 Expert guidance for MongoDB database operations using Mongoose ODM.

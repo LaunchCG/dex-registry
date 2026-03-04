@@ -1,6 +1,6 @@
 package {
   name        = "jira"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "Shared Jira CLI integration using Atlassian CLI (acli) wrapper scripts for reliable local execution"
   platforms   = ["claude-code", "github-copilot"]
 }

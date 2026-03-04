@@ -1,8 +1,3 @@
----
-name: sensitive-telemetry-data
-description: Protect sensitive information in telemetry data and credentials
----
-
 # Sensitive Telemetry Data Rule
 
 Telemetry data may contain sensitive information. Follow these rules:

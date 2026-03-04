@@ -1,7 +1,3 @@
----
-description: Assess and improve repository documentation structure following engineering best practices
----
-
 # /architecture
 
 Assesses repository documentation and generates drafts for missing artifacts.

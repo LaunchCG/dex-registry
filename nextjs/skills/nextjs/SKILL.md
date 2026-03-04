@@ -1,8 +1,3 @@
----
-name: nextjs
-description: Expert in Next.js 16+ App Router patterns, Server/Client Components, Server Actions, API routes, middleware, authentication, and data fetching. Use when implementing Next.js features, routing, or server-side logic.
----
-
 # Next.js App Router Skill
 
 Expert knowledge of Next.js 16+ App Router for modern web applications.

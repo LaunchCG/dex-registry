@@ -1,8 +1,3 @@
----
-name: review-standards
-description: Standards for conducting effective and thorough code reviews. Focus on critical issues, provide actionable feedback, and maintain high quality standards.
----
-
 # Code Review Standards
 
 ## Core Principle

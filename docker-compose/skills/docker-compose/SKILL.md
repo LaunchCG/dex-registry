@@ -1,9 +1,3 @@
-<!-- dex:docker-compose -->
----
-name: docker-compose
-description: Docker Compose configuration and multi-container orchestration. Use when working with docker-compose.yaml files or multi-container setups.
----
-
 # Docker Compose
 
 You know Docker Compose - the tool for defining and running multi-container Docker applications using YAML files.

@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-reviewer"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "PR review, creation, and git workflow with DoD validation, security scanning, and conventional commits"
   platforms   = ["claude-code", "github-copilot"]
 }

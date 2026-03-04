@@ -1,7 +1,3 @@
----
-description: Generate or validate product requirement documents (PRDs) using template-based methodology
----
-
 # /product-requirement
 
 Creates evidence-based PRDs or validates existing epics against PRD standards.

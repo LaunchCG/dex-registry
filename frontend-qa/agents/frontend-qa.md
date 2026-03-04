@@ -1,11 +1,3 @@
----
-name: frontend-qa
-description: E2E testing specialist with Playwright expertise
-model: sonnet
-required_skills: [playwright-testing, test-strategy]
-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__serena, mcp__context7, mcp__chrome-devtools]
----
-
 # Frontend QA Agent
 
 Specialized agent for comprehensive E2E testing with Playwright.

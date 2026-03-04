@@ -1,13 +1,3 @@
----
-name: log-analysis
-description: Log query patterns for CloudWatch Logs Insights, Elasticsearch, and Grafana Loki
-allowed-tools: mcp__cloudwatch__*, mcp__elasticsearch__*, mcp__grafana__*
-mcpServers:
-  - cloudwatch
-  - elasticsearch
-  - grafana
----
-
 # Log Analysis Skill
 
 Query patterns and techniques for analyzing logs across CloudWatch Logs Insights, Elasticsearch, and Grafana Loki to diagnose issues and understand system behavior.

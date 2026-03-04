@@ -1,8 +1,3 @@
----
-name: github-operations
-description: GitHub workflow automation and issue/PR management
----
-
 # GitHub Operations Skill
 
 Expert guidance for GitHub workflow automation, issue tracking, and PR management.

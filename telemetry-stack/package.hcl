@@ -1,6 +1,6 @@
 package {
   name        = "telemetry-stack"
-  version     = "0.1.2"
+  version     = "0.1.3"
   description = "Local telemetry infrastructure: Prometheus, Grafana, OTEL Collector, Elasticsearch, and Loki via Docker Compose"
   platforms   = ["claude-code", "github-copilot"]
 }

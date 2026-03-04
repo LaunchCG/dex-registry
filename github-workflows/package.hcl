@@ -1,6 +1,6 @@
 package {
   name        = "github-workflows"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "GitHub PR/issue automation and workflow management with MCP server"
   platforms   = ["claude-code", "github-copilot"]
 }

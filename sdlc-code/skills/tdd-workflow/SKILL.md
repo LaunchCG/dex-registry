@@ -1,9 +1,3 @@
----
-name: tdd-workflow
-description: Guides Test-Driven Development implementation following RED-GREEN-REFACTOR cycle
-allowed-tools: []
----
-
 # TDD Workflow Skill
 
 This skill guides the Test-Driven Development implementation process, ensuring strict adherence to the RED-GREEN-REFACTOR cycle for high-quality, well-tested code.

@@ -1,9 +1,3 @@
----
-name: code-test-verify
-description: Verify all tests pass and acceptance criteria are met following TDD verification
-allowed-tools: []
----
-
 # Code Test Verify Skill
 
 Verifies that all tests pass and acceptance criteria are fully met, completing the TDD cycle's verification phase.

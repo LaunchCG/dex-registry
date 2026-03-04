@@ -1,11 +1,3 @@
----
-name: doc-assessment
-description: Assesses documentation completeness and quality for code changes and features
-allowed-tools: mcp__github__*
-mcpServers:
-  - github
----
-
 # Documentation Assessment Skill
 
 This skill assesses documentation completeness and quality for code changes and features to ensure maintainability and knowledge sharing.

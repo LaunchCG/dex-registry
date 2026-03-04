@@ -1,11 +1,3 @@
----
-name: promql-guide
-description: PromQL query patterns for common monitoring scenarios including RED and USE methods
-allowed-tools: mcp__prometheus__*
-mcpServers:
-  - prometheus
----
-
 # PromQL Guide
 
 Reference guide for writing PromQL queries to analyze Prometheus metrics, covering syntax fundamentals, common patterns, and monitoring methodologies.

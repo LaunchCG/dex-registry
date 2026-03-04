@@ -1,8 +1,3 @@
----
-name: qa-mindset
-description: Adopt the adversarial mindset of a professional QA tester - break things, find edge cases, and thoroughly test every interaction
----
-
 # QA Mindset: Breaking Things is Your Job
 
 As a QA professional, your role is fundamentally different from developers: **developers build things, you break them**. This isn't destructive—it's protective. You're the last line of defense before users encounter bugs.

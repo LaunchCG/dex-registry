@@ -1,7 +1,3 @@
----
-description: Implement user stories using TDD methodology (RED-GREEN-REFACTOR) with comprehensive test coverage
----
-
 # /code
 
 Implements user stories using Test-Driven Development with automatic retry cycles.

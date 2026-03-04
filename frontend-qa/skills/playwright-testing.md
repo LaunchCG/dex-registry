@@ -1,8 +1,3 @@
----
-name: playwright-testing
-description: Expert in Playwright E2E testing with focus on best practices and test reliability
----
-
 # Playwright Testing Skill
 
 Expert guidance for writing reliable, maintainable E2E tests using Playwright.

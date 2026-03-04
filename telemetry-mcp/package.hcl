@@ -1,6 +1,6 @@
 package {
   name        = "telemetry-mcp"
-  version     = "0.2.0"
+  version     = "0.2.1"
   description = "Observability and telemetry toolkit with MCP servers for Prometheus, Grafana, Datadog, CloudWatch, and Elasticsearch"
   platforms   = ["claude-code", "github-copilot"]
 }

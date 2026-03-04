@@ -1,11 +1,3 @@
----
-name: dod-validation
-description: Validates work meets Definition of Done before merge to ensure quality and completeness
-allowed-tools: mcp__github__*
-mcpServers:
-  - github
----
-
 # Definition of Done Validation Skill
 
 This skill validates that completed work meets Definition of Done (DoD) criteria before merge. It ensures consistent quality standards and completeness across all deliverables.

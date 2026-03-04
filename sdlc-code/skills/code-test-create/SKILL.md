@@ -1,9 +1,3 @@
----
-name: code-test-create
-description: Create TDD test suite for code implementation based on story acceptance criteria
-allowed-tools: []
----
-
 # Code Test Create Skill
 
 Generates comprehensive test suite (unit, integration, e2e) for code implementation following TDD principles based on story acceptance criteria.

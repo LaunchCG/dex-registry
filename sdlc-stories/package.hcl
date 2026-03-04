@@ -1,6 +1,6 @@
 package {
   name        = "sdlc-stories"
-  version     = "0.1.1"
+  version     = "0.1.2"
   description = "User story generation, validation, and DoR compliance testing with support for user, bug, and technical story types"
   platforms   = ["claude-code", "github-copilot"]
 }

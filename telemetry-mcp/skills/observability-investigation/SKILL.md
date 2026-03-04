@@ -1,15 +1,3 @@
----
-name: observability-investigation
-description: Systematic approach to investigating production issues using metrics, logs, and traces
-allowed-tools: mcp__prometheus__*, mcp__grafana__*, mcp__datadog__*, mcp__cloudwatch__*, mcp__elasticsearch__*
-mcpServers:
-  - prometheus
-  - grafana
-  - datadog
-  - cloudwatch
-  - elasticsearch
----
-
 # Observability Investigation Skill
 
 A structured approach to investigating production issues by correlating signals across metrics, logs, and traces from multiple telemetry sources.
