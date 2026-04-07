@@ -1,6 +1,6 @@
-package {
+meta {
   name        = "azure-devops"
-  version     = "0.1.1"
+  version     = "1.0.0"
   description = "Azure DevOps integration using Microsoft's official MCP server for work item management, boards, and sprint tracking"
   platforms   = ["claude-code", "github-copilot"]
 }
@@ -11,8 +11,10 @@ mcp_server "azure-devops" {
   args        = ["-y", "@azure-devops/mcp", "$${AZURE_DEVOPS_ORG}"]
 }
 
-claude_settings "mcp-permissions" {
-  allow = [
-    "mcp__azure-devops__*"
-  ]
+settings "mcp-permissions" {
+  claude {
+    allow = [
+      "mcp__azure-devops__*"
+    ]
+  }
 }

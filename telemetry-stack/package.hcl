@@ -1,12 +1,12 @@
-package {
+meta {
   name        = "telemetry-stack"
-  version     = "0.1.3"
+  version     = "1.0.0"
   description = "Local telemetry infrastructure: Prometheus, Grafana, OTEL Collector, Elasticsearch, and Loki via Docker Compose"
   platforms   = ["claude-code", "github-copilot"]
 }
 
 dependency "docker-compose" {
-  version = ">=0.2.0"
+  version = ">=1.0.0"
 }
 
 # --- Distribute infrastructure config files ---
@@ -50,31 +50,19 @@ file "tasks" {
 
 # --- Skills ---
 
-claude_skill "local-stack-setup" {
+skill "local-stack-setup" {
   description = "How to start, stop, and use the local telemetry stack for development"
   content     = file("skills/local-stack-setup/SKILL.md")
 }
 
-claude_skill "app-instrumentation" {
+skill "app-instrumentation" {
   description = "OTEL instrumentation patterns for Python/FastAPI and Node.js to publish telemetry to the local stack"
   content     = file("skills/app-instrumentation/SKILL.md")
 }
 
 # --- Rules ---
 
-claude_rule "telemetry-stack-mcp-rule" {
+rule "telemetry-stack-mcp-rule" {
   description = "Enforce MCP usage for telemetry stack operations"
   content     = "You must use the runbook MCP tools for all telemetry stack operations (start, stop, status, logs). Never run docker compose commands directly via Bash for the telemetry stack."
-}
-
-# --- Copilot Resources ---
-
-copilot_skill "local-stack-setup" {
-  description = "How to start, stop, and use the local telemetry stack for development"
-  content     = file("skills/local-stack-setup/SKILL.md")
-}
-
-copilot_skill "app-instrumentation" {
-  description = "OTEL instrumentation patterns for Python/FastAPI and Node.js"
-  content     = file("skills/app-instrumentation/SKILL.md")
 }
