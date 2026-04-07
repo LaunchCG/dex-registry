@@ -1,16 +1,16 @@
-package {
+meta {
   name        = "docker-compose"
-  version     = "0.2.2"
+  version     = "1.0.0"
   description = "Docker Compose skill with MCP task automation"
   platforms   = ["claude-code", "github-copilot"]
 }
 
-claude_skill "docker-compose" {
+skill "docker-compose" {
   description = "Docker Compose configuration and multi-container orchestration"
   content     = file("skills/docker-compose/SKILL.md")
 }
 
-claude_rule "docker-compose-rule" {
+rule "docker-compose-rule" {
   description = "Enforce MCP usage"
   content = "You must use the runbook MCP tools for all docker compose operations. Never run docker compose commands directly via Bash."
 }
@@ -25,15 +25,10 @@ mcp_server "runbook" {
   command     = "runbook"
 }
 
-claude_settings "mcp-permissions" {
-  allow = [
-    "mcp__runbook__*"
-  ]
-}
-
-# GitHub Copilot Resources
-
-copilot_skill "docker-compose" {
-  description = "Docker Compose configuration and multi-container orchestration"
-  content     = file("skills/docker-compose/SKILL.md")
+settings "mcp-permissions" {
+  claude {
+    allow = [
+      "mcp__runbook__*"
+    ]
+  }
 }

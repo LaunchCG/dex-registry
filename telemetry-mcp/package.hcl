@@ -1,16 +1,16 @@
-package {
+meta {
   name        = "telemetry-mcp"
-  version     = "0.2.1"
+  version     = "1.0.0"
   description = "Observability and telemetry toolkit with MCP servers for Prometheus, Grafana, Datadog, CloudWatch, and Elasticsearch"
   platforms   = ["claude-code", "github-copilot"]
 }
 
 dependency "base-dev" {
-  version = ">=0.1.0"
+  version = ">=1.0.0"
 }
 
 dependency "telemetry-stack" {
-  version = ">=0.1.2"
+  version = ">=1.0.0"
 }
 
 # --- MCP Servers ---
@@ -43,8 +43,6 @@ mcp_server "cloudwatch" {
   args        = ["-y", "@teolin/mcp-cloudwatch-logs"]
 }
 
-
-
 mcp_server "elasticsearch" {
   description = "Query and analyze Elasticsearch indices, mappings, and documents"
   command     = "npx"
@@ -55,31 +53,31 @@ mcp_server "elasticsearch" {
   }
 }
 
-# --- Claude Skills ---
+# --- Skills ---
 
-claude_skill "observability-investigation" {
+skill "observability-investigation" {
   description = "Systematic approach to investigating production issues using metrics, logs, and traces"
   content     = file("skills/observability-investigation/SKILL.md")
 }
 
-claude_skill "promql-guide" {
+skill "promql-guide" {
   description = "PromQL query patterns for common monitoring scenarios including RED and USE methods"
   content     = file("skills/promql-guide/SKILL.md")
 }
 
-claude_skill "log-analysis" {
+skill "log-analysis" {
   description = "Log query patterns for CloudWatch Logs Insights, Elasticsearch, and Grafana Loki"
   content     = file("skills/log-analysis/SKILL.md")
 }
 
-claude_skill "local-telemetry-setup" {
+skill "local-telemetry-setup" {
   description = "Configure MCP servers to connect to a locally running telemetry stack"
   content     = file("skills/local-telemetry-setup/SKILL.md")
 }
 
-# --- Claude Rules ---
+# --- Rules ---
 
-claude_rule "telemetry-stack-lifecycle" {
+rule "telemetry-stack-lifecycle" {
   description = "Verify telemetry stack is running before using telemetry MCP servers"
   content     = <<-EOT
     Before using any telemetry MCP servers (prometheus, grafana, elasticsearch), you must verify the local telemetry stack is running.
@@ -94,68 +92,33 @@ claude_rule "telemetry-stack-lifecycle" {
   EOT
 }
 
-claude_rule "telemetry-read-only" {
+rule "telemetry-read-only" {
   description = "Default to read-only operations when using telemetry MCP servers"
   content     = file("rules/telemetry-read-only.md")
 }
 
-claude_rule "sensitive-telemetry-data" {
+rule "sensitive-telemetry-data" {
   description = "Protect sensitive information in telemetry data and credentials"
   content     = file("rules/sensitive-telemetry-data.md")
 }
 
-# --- Claude Agent ---
+# --- Agent ---
 
-claude_subagent "incident-investigator" {
+agent "incident-investigator" {
   description = "Specialized agent for investigating production incidents using observability data"
   content     = file("agents/incident-investigator.md")
 }
 
 # --- MCP Permissions ---
 
-claude_settings "mcp-permissions" {
-  allow = [
-    "mcp__prometheus__*",
-    "mcp__grafana__*",
-    "mcp__datadog__*",
-    "mcp__cloudwatch__*",
-    "mcp__elasticsearch__*"
-  ]
-}
-
-# --- Copilot Resources ---
-
-copilot_skill "observability-investigation" {
-  description = "Systematic approach to investigating production issues using metrics, logs, and traces"
-  content     = file("skills/observability-investigation/SKILL.md")
-}
-
-copilot_skill "promql-guide" {
-  description = "PromQL query patterns for common monitoring scenarios"
-  content     = file("skills/promql-guide/SKILL.md")
-}
-
-copilot_skill "log-analysis" {
-  description = "Log query patterns for CloudWatch, Elasticsearch, and Loki"
-  content     = file("skills/log-analysis/SKILL.md")
-}
-
-copilot_skill "local-telemetry-setup" {
-  description = "Configure MCP servers to connect to a locally running telemetry stack"
-  content     = file("skills/local-telemetry-setup/SKILL.md")
-}
-
-copilot_instruction "telemetry-read-only" {
-  description = "Default to read-only operations when using telemetry MCP servers"
-  content     = file("rules/telemetry-read-only.md")
-}
-
-copilot_instruction "sensitive-telemetry-data" {
-  description = "Protect sensitive information in telemetry data and credentials"
-  content     = file("rules/sensitive-telemetry-data.md")
-}
-
-copilot_agent "incident-investigator" {
-  description = "Specialized agent for investigating production incidents using observability data"
-  content     = file("agents/incident-investigator.md")
+settings "mcp-permissions" {
+  claude {
+    allow = [
+      "mcp__prometheus__*",
+      "mcp__grafana__*",
+      "mcp__datadog__*",
+      "mcp__cloudwatch__*",
+      "mcp__elasticsearch__*"
+    ]
+  }
 }
