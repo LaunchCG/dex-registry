@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This is a **dex package registry** hosted on Azure Blob Storage. It contains 19 packages for AI-augmented SDLC workflows, code quality tooling, and framework support.
+This is a **dex package registry** hosted on Azure Blob Storage. It contains 21 packages for AI-augmented SDLC workflows, code quality tooling, and framework support.
 
 ## Key Commands
 
@@ -19,6 +19,9 @@ This is a **dex package registry** hosted on Azure Blob Storage. It contains 19 
 
 # Package only (no deploy)
 ./scripts/package.sh
+
+# Scaffold a new package
+./scripts/new-package.sh <package-name>
 
 # Rebuild registry from Azure blobs (recovery)
 python3 scripts/rebuild-registry-from-azure.py <storage-account-name>
@@ -84,6 +87,8 @@ copilot_skill "my-skill" {
 2. Create `my-package/package.hcl` with the format above
 3. Add skills, agents, commands, rules as needed
 4. Run `./deploy.sh` to build and publish
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full package authoring guide. Use `./scripts/new-package.sh <name>` to scaffold a new package.
 
 ## Infrastructure
 
